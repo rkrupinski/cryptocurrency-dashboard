@@ -1,0 +1,9 @@
+{
+  "extends": ["tslint:latest", "tslint-react"],
+  "rules": {
+    "no-implicit-dependencies": false, // https://github.com/palantir/tslint/issues/3364
+    "no-submodule-imports": [true, "@src", "redux-saga"],
+    "ordered-imports": false,
+    "quotemark": [true, "single"]
+  }
+}
