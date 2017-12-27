@@ -8,7 +8,9 @@ export interface IRootProps {
   store: Store;
 }
 
-export const Root: StatelessComponent<IRootProps> = ({ store }) => (
+export const Root: StatelessComponent<IRootProps> = ({
+  store,
+}) => (
   <Provider store={store}>
     <React.Fragment>
       <h1>Hello</h1>

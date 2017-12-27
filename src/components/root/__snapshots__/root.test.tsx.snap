@@ -12,8 +12,11 @@ exports[`Renders root 1`] = `
     }
   }
 >
-  <h1>
-    Hello, World!
-  </h1>
+  <React.Fragment>
+    <h1>
+      Hello
+    </h1>
+    <Connect(Currencies) />
+  </React.Fragment>
 </Provider>
 `;
