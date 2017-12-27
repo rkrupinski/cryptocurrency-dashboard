@@ -3,12 +3,12 @@ import { take, put, call } from 'redux-saga/effects';
 import { currenciesUrl } from '@src/common/urls';
 import http from '@src/common/http';
 import {
-  Currency,
   ActionTypes,
   currenciesLoadingStart,
   currenciesLoadingStop,
   setCurrencies,
 } from '@src/redux_/currencies';
+import { currencies as normalizeCurrencies } from '@src/common/normalize';
 
 export default function* currenciesSaga() {
   while (true) {
@@ -17,23 +17,9 @@ export default function* currenciesSaga() {
     yield put(currenciesLoadingStart());
 
     try {
-      const {
-        data: {
-          Data: currencies = [],
-        },
-      } = yield call(http.get, currenciesUrl());
+      const { data } = yield call(http.get, currenciesUrl());
 
-      const normalizedCurrencies = Object.keys(currencies).map((key) => {
-        const {
-          Id: id,
-          CoinName: name,
-          Symbol: symbol,
-        } = currencies[key];
-
-        return { id, name, symbol };
-      });
-
-      yield put(setCurrencies(normalizedCurrencies));
+      yield put(setCurrencies(normalizeCurrencies(data.Data)));
     } catch (err) {
       // ¯\_(ツ)_/¯
     } finally {

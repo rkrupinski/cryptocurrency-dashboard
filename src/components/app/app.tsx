@@ -1,19 +1,23 @@
 import React, { PureComponent } from 'react';
 
 import { IFetchCurrenciesAction } from '@src/redux_/currencies';
+import { CurrencyPickerConnected as CurrencyPicker } from '@src/components/currencyPicker';
 
-interface ICurrenciesProps {
+interface IAppProps {
   fetchCurrencies: () => IFetchCurrenciesAction;
 }
 
-export class Currencies extends PureComponent<ICurrenciesProps, {}> {
+export class App extends PureComponent<IAppProps, {}> {
   public componentDidMount() {
     this.props.fetchCurrencies();
   }
 
   public render() {
     return (
-      <div>Currencies :)</div>
+      <React.Fragment>
+        <h1>Hello</h1>
+        <CurrencyPicker />
+      </React.Fragment>
     );
   }
 }

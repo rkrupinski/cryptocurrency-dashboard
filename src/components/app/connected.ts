@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 
-import { Currencies } from '.';
 import { fetchCurrencies } from '@src/redux_/currencies';
+import { App } from '.';
 
 const mapDispatchToProps = {
   fetchCurrencies,
 };
 
-export const CurrenciesConnected = connect(
+export const AppConnected = connect(
   null,
   mapDispatchToProps,
-)(Currencies);
+)(App);

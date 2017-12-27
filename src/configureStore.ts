@@ -1,7 +1,10 @@
 import { createStore, compose, applyMiddleware, GenericStoreEnhancer } from 'redux';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
+import persistState, { mergePersistedState } from 'redux-localstorage';
+import adapter from 'redux-localstorage/lib/adapters/localStorage';
+import filter from 'redux-localstorage-filter';
 
-import { rootReducer, IRootState } from '@src/redux_';
+import { rootReducer, IRootState, Reducer } from '@src/redux_';
 import { rootSaga } from '@src/sagas';
 
 // const composeEnhancers = (
@@ -16,12 +19,23 @@ const composeEnhancers = compose;
 const configureStore = (initialState?: IRootState) => {
   const sagaMiddleware = createSagaMiddleware();
 
+  const reducer = compose<Reducer>(
+    mergePersistedState(),
+  )(rootReducer);
+
+  const storage = compose(
+    filter([
+      'currencies.selected',
+    ]),
+  )(adapter(window.localStorage));
+
   const enhancer = composeEnhancers(
     applyMiddleware(sagaMiddleware),
+    persistState(storage, 'cryptocurrency-dashboard'),
   );
 
   const store = createStore(
-    rootReducer,
+    reducer,
     initialState!,
     enhancer as GenericStoreEnhancer,
   );

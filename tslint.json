@@ -2,7 +2,7 @@
   "extends": ["tslint:latest", "tslint-react"],
   "rules": {
     "no-implicit-dependencies": false, // https://github.com/palantir/tslint/issues/3364
-    "no-submodule-imports": [true, "@src", "redux-saga"],
+    "no-submodule-imports": [true, "@src", "redux-saga", "material-ui", "redux-localstorage"],
     "ordered-imports": false,
     "quotemark": [true, "single"]
   }
