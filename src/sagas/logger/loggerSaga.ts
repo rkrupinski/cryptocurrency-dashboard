@@ -7,8 +7,8 @@ export default function* loggerSaga() {
 
     /* tslint:disable */
     console.group(action.type);
-    console.log('action', action);
-    console.log('state after', state);
+    console.log('%caction', 'font-weight: bold; color: green;', action);
+    console.log('%cstate after', 'font-weight: bold; color: blue;', state);
     console.groupEnd();
     /* tslint:enable */
   }

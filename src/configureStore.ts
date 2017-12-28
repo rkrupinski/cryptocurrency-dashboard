@@ -16,6 +16,8 @@ import { rootSaga } from '@src/sagas';
 // https://github.com/zalmoxisus/redux-devtools-extension/issues/430
 const composeEnhancers = compose;
 
+const STORAGE_VERSION = 'v1';
+
 const configureStore = (initialState?: IRootState) => {
   const sagaMiddleware = createSagaMiddleware();
 
@@ -31,7 +33,7 @@ const configureStore = (initialState?: IRootState) => {
 
   const enhancer = composeEnhancers(
     applyMiddleware(sagaMiddleware),
-    persistState(storage, 'cryptocurrency-dashboard'),
+    persistState(storage, `cryptocurrency-dashboard-${STORAGE_VERSION}`),
   );
 
   const store = createStore(
