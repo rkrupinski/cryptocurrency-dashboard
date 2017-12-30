@@ -2,15 +2,15 @@ import React, { StatelessComponent, PureComponent, ReactNode, ChangeEvent } from
 import Autosuggest from 'react-autosuggest';
 import { withStyles, WithStyles } from 'material-ui/styles';
 
-import { Currency } from '@src/redux_/currencies';
+import { Currency, ICurrencySelectedAction } from '@src/redux_/currencies';
 import { styles, ClassNames } from './styles';
 import { InputComponent, SuggestionsContainer, Suggestion } from './renderers';
 
 export interface ICurrencyPickerProps {
-  all: Currency[];
+  currencies: Currency[];
   loading: boolean;
   maxSuggestions: number;
-  selected: string[];
+  selectCurrency: (currency: Currency) => ICurrencySelectedAction;
 }
 
 interface ICurrencyPickerState {
@@ -32,7 +32,7 @@ export class CurrencyPickerRaw extends PureComponent<
   };
 
   public render() {
-    const { all, classes } = this.props;
+    const { currencies, classes } = this.props;
 
     const theme = {
       container: classes.container,
@@ -80,15 +80,18 @@ export class CurrencyPickerRaw extends PureComponent<
     }));
   }
 
-  private onSuggestionSelected = (_: any, selected: any) => { // FIXME
-    /* tslint:disable */
-    console.log(selected);
-    /* tslint:enable */
+  private onSuggestionSelected = (
+    _: any,
+    { suggestion: currency }: { suggestion: Currency },
+  ) => {
+    const { selectCurrency } = this.props;
 
     this.setState((prevState) => ({
       ...prevState,
       value: '',
     }));
+
+    selectCurrency(currency);
   }
 
   private onChange(
@@ -102,12 +105,12 @@ export class CurrencyPickerRaw extends PureComponent<
   }
 
   private getSuggestions = (value: string) => {
-    const { all, maxSuggestions } = this.props;
+    const { currencies, maxSuggestions } = this.props;
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
     let count = 0;
 
-    return inputLength ? all.filter((currency) => {
+    return inputLength ? currencies.filter((currency) => {
       const keep = count < maxSuggestions &&
           currency.name.toLowerCase().slice(0, inputLength) === inputValue;
 

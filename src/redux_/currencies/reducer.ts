@@ -35,6 +35,24 @@ export const reducer = combineReducers<IState, RootAction>({
 
   selected(state = [], action) {
     switch (action.type) {
+      case ActionTypes.CURRENCY_SELECTED:
+        {
+          const { id } = action.payload;
+
+          return [...new Set([id, ...state])];
+        }
+
+      case ActionTypes.CURRENCY_DESELECTED:
+        {
+          const { id: toRemove } = action.payload;
+          const index = state.indexOf(toRemove);
+
+          return index !== -1 ? [
+            ...state.slice(0, index),
+            ...state.slice(index + 1),
+          ] : state;
+        }
+
       default:
         return state;
     }

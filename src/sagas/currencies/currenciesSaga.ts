@@ -21,7 +21,7 @@ export default function* currenciesSaga() {
 
       yield put(setCurrencies(normalizeCurrencies(data.Data)));
     } catch (err) {
-      // ¯\_(ツ)_/¯
+      // (☞ﾟ∀ﾟ)☞
     } finally {
       yield put(currenciesLoadingStop());
     }

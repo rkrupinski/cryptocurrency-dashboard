@@ -4,7 +4,7 @@ import { reducer as currenciesReducer, IState as CurrenciesState } from './curre
 import { RootAction } from '.';
 
 export interface IRootState {
-  currencies: CurrenciesState;
+  readonly currencies: CurrenciesState;
 }
 
 export const rootReducer = combineReducers<IRootState, RootAction>({

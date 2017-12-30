@@ -15,7 +15,7 @@ export class App extends PureComponent<IAppProps, {}> {
   public render() {
     return (
       <React.Fragment>
-        <h1>Hello</h1>
+        <h1>¯\_(ツ)_/¯</h1>
         <CurrencyPicker />
       </React.Fragment>
     );

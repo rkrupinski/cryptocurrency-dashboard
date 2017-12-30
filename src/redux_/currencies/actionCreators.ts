@@ -5,6 +5,8 @@ import {
   ISetCurrenciesAction,
   ICurrenciesLoadingStartAction,
   ICurrenciesLoadingStopAction,
+  ICurrencySelectedAction,
+  ICurrencyDeselectedAction,
 } from '.';
 
 export const fetchCurrencies = (): IFetchCurrenciesAction => ({
@@ -22,4 +24,14 @@ export const currenciesLoadingStart = (): ICurrenciesLoadingStartAction => ({
 
 export const currenciesLoadingStop = (): ICurrenciesLoadingStopAction => ({
   type: ActionTypes.CURRENCIES_LOADING_STOP,
+});
+
+export const selectCurrency = (currency: Currency): ICurrencySelectedAction => ({
+  payload: currency,
+  type: ActionTypes.CURRENCY_SELECTED,
+});
+
+export const deselectCurrency = (currency: Currency): ICurrencyDeselectedAction => ({
+  payload: currency,
+  type: ActionTypes.CURRENCY_DESELECTED,
 });
