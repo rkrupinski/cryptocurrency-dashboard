@@ -1,9 +1,13 @@
 import { createSelector } from 'reselect';
 
-import { IState as CurrenciesState } from '.';
+import { IRootState, selectCurrencies } from '@src/redux_';
 
-export const availableCurrencies = createSelector(
-  ({ all }: CurrenciesState) => all,
-  ({ selected }: CurrenciesState) => selected,
-  (all, selected) => all.filter(({ id }) => selected.indexOf(id) === -1),
+export const selectRemainingCurrencies = createSelector(
+  (state: IRootState) => selectCurrencies(state),
+  ({ all, selected }) => all.filter(({ id }) => selected.indexOf(id) === -1),
+);
+
+export const selectLoading = createSelector(
+  (state: IRootState) => selectCurrencies(state),
+  ({ loading }) => loading,
 );

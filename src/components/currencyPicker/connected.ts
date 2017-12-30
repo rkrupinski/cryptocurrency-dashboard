@@ -4,14 +4,12 @@ import { branch, renderComponent, compose } from 'recompose';
 import { CurrencyPicker, ICurrencyPickerProps } from '.';
 import { Spinner } from '@src/components/spinner';
 import { IRootState } from '@src/redux_';
-import { availableCurrencies, selectCurrency } from '@src/redux_/currencies';
+import { selectRemainingCurrencies, selectLoading, selectCurrency } from '@src/redux_/currencies';
 
-const mapStateToProps = ({ currencies }: IRootState) => {
-  const { loading } = currencies;
-
+const mapStateToProps = (state: IRootState) => {
   return {
-    currencies: availableCurrencies(currencies),
-    loading,
+    currencies: selectRemainingCurrencies(state),
+    loading: selectLoading(state),
   };
 };
 
