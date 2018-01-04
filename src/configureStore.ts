@@ -28,6 +28,7 @@ const configureStore = (initialState?: IRootState) => {
   const storage = compose(
     filter([
       'currencies.selected',
+      'currencies.target',
     ]),
   )(adapter(window.localStorage));
 

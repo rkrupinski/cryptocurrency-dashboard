@@ -1,5 +1,6 @@
 import {
   Currency,
+  Target,
   ActionTypes,
   IFetchCurrenciesAction,
   ISetCurrenciesAction,
@@ -7,6 +8,7 @@ import {
   ICurrenciesLoadingStopAction,
   ICurrencySelectedAction,
   ICurrencyDeselectedAction,
+  IToggleTargetAction,
 } from '.';
 
 export const fetchCurrencies = (): IFetchCurrenciesAction => ({
@@ -34,4 +36,9 @@ export const selectCurrency = (currency: Currency): ICurrencySelectedAction => (
 export const deselectCurrency = (currency: Currency): ICurrencyDeselectedAction => ({
   payload: currency,
   type: ActionTypes.CURRENCY_DESELECTED,
+});
+
+export const toggleTarget = (target: Target): IToggleTargetAction => ({
+  payload: target,
+  type: ActionTypes.TOGGLE_TARGET,
 });

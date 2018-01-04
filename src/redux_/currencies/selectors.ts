@@ -11,3 +11,8 @@ export const selectLoading = createSelector(
   (state: IRootState) => selectCurrencies(state),
   ({ loading }) => loading,
 );
+
+export const selectTarget = createSelector(
+  (state: IRootState) => selectCurrencies(state),
+  ({ target }) => target,
+);

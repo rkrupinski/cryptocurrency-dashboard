@@ -1,6 +1,7 @@
 import React, { ReactNode, ChangeEvent } from 'react';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
+import { InputProps } from 'react-autosuggest';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import { MenuItem } from 'material-ui/Menu';
@@ -12,16 +13,28 @@ interface IInputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   ref?: any;
+  classes?: any;
 }
 
-export const InputComponent = ({ ref, ...inputProps }: IInputProps) => (
-  <TextField
-    inputRef={ref}
-    InputProps={{ ...inputProps }}
-  />
-);
+export const renderInput = (props: IInputProps) => {
+  const { classes, ref, ...other } = props;
 
-export const SuggestionsContainer = ({
+  const inputProps = {
+    classes: {
+      input: classes.input,
+    },
+    ...other,
+  };
+
+  return (
+    <TextField
+      inputRef={ref}
+      InputProps={inputProps}
+    />
+  );
+};
+
+export const renderSuggestionsContainer = ({
   containerProps,
   children,
 }: { containerProps: any, children: ReactNode }) => (
@@ -30,7 +43,7 @@ export const SuggestionsContainer = ({
   </Paper>
 );
 
-export const Suggestion = (
+export const renderSuggestion = (
   suggestion: Currency,
   { query, isHighlighted }: { query: string, isHighlighted: boolean },
 ) => {

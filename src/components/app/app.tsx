@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 
 import { IFetchCurrenciesAction } from '@src/redux_/currencies';
 import { CurrencyPickerConnected as CurrencyPicker } from '@src/components/currencyPicker';
+import { TargetSelectorConnected as TargetSelector } from '@src/components/targetSelector';
 
 interface IAppProps {
   fetchCurrencies: () => IFetchCurrenciesAction;
@@ -15,8 +16,8 @@ export class App extends PureComponent<IAppProps, {}> {
   public render() {
     return (
       <React.Fragment>
-        <h1>¯\_(ツ)_/¯</h1>
         <CurrencyPicker />
+        <TargetSelector />
       </React.Fragment>
     );
   }

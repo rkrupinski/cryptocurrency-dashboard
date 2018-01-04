@@ -1,4 +1,4 @@
-import { Currency } from '.';
+import { Currency, Target } from '.';
 
 export enum ActionTypes {
   FETCH_CURRENCIES = 'FETCH_CURRENCIES',
@@ -7,6 +7,7 @@ export enum ActionTypes {
   CURRENCIES_LOADING_STOP = 'CURRENCIES_LOADING_STOP',
   CURRENCY_SELECTED = 'CURRENCY_SELECTED',
   CURRENCY_DESELECTED = 'CURRENCY_DESELECTED',
+  TOGGLE_TARGET = 'TOGGLE_TARGET',
 }
 
 export interface IFetchCurrenciesAction {
@@ -36,10 +37,16 @@ export interface ICurrencyDeselectedAction {
   payload: Currency;
 }
 
+export interface IToggleTargetAction {
+  type: ActionTypes.TOGGLE_TARGET;
+  payload: Target;
+}
+
 export type Actions =
   | IFetchCurrenciesAction
   | ISetCurrenciesAction
   | ICurrenciesLoadingStartAction
   | ICurrenciesLoadingStopAction
   | ICurrencySelectedAction
-  | ICurrencyDeselectedAction;
+  | ICurrencyDeselectedAction
+  | IToggleTargetAction;

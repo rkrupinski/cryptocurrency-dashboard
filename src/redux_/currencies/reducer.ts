@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
 
 import { RootAction } from '@src/redux_';
-import { ActionTypes, Currency, setCurrencies } from '.';
+import { ActionTypes, Currency, Target, setCurrencies } from '.';
 
 export interface IState {
   readonly all: Currency[];
   readonly loading: boolean;
   readonly selected: string[];
+  readonly target: Target;
 }
 
 export const reducer = combineReducers<IState, RootAction>({
@@ -52,6 +53,16 @@ export const reducer = combineReducers<IState, RootAction>({
             ...state.slice(index + 1),
           ] : state;
         }
+
+      default:
+        return state;
+    }
+  },
+
+  target(state = 'USD', action) {
+    switch (action.type) {
+      case ActionTypes.TOGGLE_TARGET:
+        return action.payload;
 
       default:
         return state;

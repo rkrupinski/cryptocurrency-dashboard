@@ -3,8 +3,8 @@ import Autosuggest from 'react-autosuggest';
 import { withStyles, WithStyles } from 'material-ui/styles';
 
 import { Currency, ICurrencySelectedAction } from '@src/redux_/currencies';
+import { renderInput, renderSuggestionsContainer, renderSuggestion } from './renderers';
 import { styles, ClassNames } from './styles';
-import { InputComponent, SuggestionsContainer, Suggestion } from './renderers';
 
 export interface ICurrencyPickerProps {
   currencies: Currency[];
@@ -36,6 +36,7 @@ export class CurrencyPickerRaw extends PureComponent<
 
     const theme = {
       container: classes.container,
+      suggestionsContainerOpen: classes.suggestionsContainerOpen,
       suggestionsList: classes.suggestionsList,
     };
 
@@ -45,17 +46,18 @@ export class CurrencyPickerRaw extends PureComponent<
     const clearCallback = this.onSuggestionsClear.bind(this);
 
     const inputProps = {
+      classes,
       onChange: changeCallback,
-      placeholder: 'Seaerch currencies by name',
+      placeholder: 'Search currencies by name',
       value: this.state.value,
     };
 
     return (
       <Autosuggest
         theme={theme}
-        renderInputComponent={InputComponent}
-        renderSuggestionsContainer={SuggestionsContainer}
-        renderSuggestion={Suggestion}
+        renderInputComponent={renderInput}
+        renderSuggestionsContainer={renderSuggestionsContainer}
+        renderSuggestion={renderSuggestion}
         onSuggestionsFetchRequested={fetchCallback}
         onSuggestionsClearRequested={clearCallback}
         onSuggestionSelected={this.onSuggestionSelected}

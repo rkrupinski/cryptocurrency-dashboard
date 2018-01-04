@@ -3,3 +3,5 @@ export type Currency = {
   name: string;
   symbol: string;
 };
+
+export type Target = 'USD' | 'EUR';

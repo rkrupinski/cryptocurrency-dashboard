@@ -6,12 +6,10 @@ import { Spinner } from '@src/components/spinner';
 import { IRootState } from '@src/redux_';
 import { selectRemainingCurrencies, selectLoading, selectCurrency } from '@src/redux_/currencies';
 
-const mapStateToProps = (state: IRootState) => {
-  return {
-    currencies: selectRemainingCurrencies(state),
-    loading: selectLoading(state),
-  };
-};
+const mapStateToProps = (state: IRootState) => ({
+  currencies: selectRemainingCurrencies(state),
+  loading: selectLoading(state),
+});
 
 const mapDispatchToProps = {
   selectCurrency,
