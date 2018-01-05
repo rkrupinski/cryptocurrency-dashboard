@@ -3,7 +3,8 @@ import { compose } from 'recompose';
 
 import { withSpinner } from '@src/components/withSpinner';
 import { IRootState } from '@src/redux_';
-import { selectTarget, selectLoading, toggleTarget } from '@src/redux_/currencies';
+import { toggleTarget } from '@src/redux_/currencies';
+import { selectTarget, selectLoading } from '@src/redux_/currencies/selectors';
 import { TargetSelector, ITargetSelectorProps } from '.';
 
 const mapStateToProps = (state: IRootState) => ({

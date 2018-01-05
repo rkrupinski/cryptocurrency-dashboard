@@ -1,27 +1,30 @@
 import { combineReducers } from 'redux';
 
 import { RootAction } from '@src/redux_';
-import { ActionTypes as CurrenciesActionTypes } from '@src/redux_/currencies';
+import { ActionTypes } from '.';
 
 export interface IState {
-  readonly loading: { [key: string]: boolean };
+  readonly loading: boolean;
+  // readonly data: { }
 }
 
 export const reducer = combineReducers<IState, RootAction>({
-  loading(state = {}, action) {
+  loading(state = false, action) {
     switch (action.type) {
-      case CurrenciesActionTypes.CURRENCY_DESELECTED:
-        {
-          const { id } = action.payload;
-          const newState = { ...state };
+      case ActionTypes.PRICES_LOADING_START:
+        return true;
 
-          delete newState[id];
-
-          return newState;
-        }
+      case ActionTypes.PRICES_LOADING_STOP:
+        return false;
 
       default:
         return state;
     }
   },
+
+  // data(state = {}, action) {
+  //   switch (action.type) {
+  //     case ActionTypes.
+  //   }
+  // },
 });

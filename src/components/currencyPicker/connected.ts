@@ -4,11 +4,8 @@ import { compose } from 'recompose';
 import { withSpinner } from '@src/components/withSpinner';
 import { CurrencyPicker, ICurrencyPickerProps } from '.';
 import { IRootState } from '@src/redux_';
-import {
-  selectRemainingCurrencies,
-  selectLoading,
-  selectCurrency,
-} from '@src/redux_/currencies';
+import { selectCurrency } from '@src/redux_/currencies';
+import { selectRemainingCurrencies, selectLoading } from '@src/redux_/currencies/selectors';
 
 const mapStateToProps = (state: IRootState) => ({
   currencies: selectRemainingCurrencies(state),

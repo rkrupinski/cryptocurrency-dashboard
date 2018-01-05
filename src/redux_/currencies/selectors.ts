@@ -1,18 +1,25 @@
 import { createSelector } from 'reselect';
 
-import { IRootState, selectCurrencies } from '@src/redux_';
+import { selectCurrencies } from '@src/redux_';
 
 export const selectRemainingCurrencies = createSelector(
-  (state: IRootState) => selectCurrencies(state),
+  selectCurrencies,
   ({ all, selected }) => all.filter(({ id }) => selected.indexOf(id) === -1),
 );
 
 export const selectLoading = createSelector(
-  (state: IRootState) => selectCurrencies(state),
+  selectCurrencies,
   ({ loading }) => loading,
 );
 
 export const selectTarget = createSelector(
-  (state: IRootState) => selectCurrencies(state),
+  selectCurrencies,
   ({ target }) => target,
+);
+
+export const selectSelectedCurrenciesSymbols = createSelector(
+  selectCurrencies,
+  ({ all, selected }) => all
+      .filter(({ id }) => selected.find((selectedId) => selectedId === id))
+      .map(({ symbol }) => symbol),
 );
