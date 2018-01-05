@@ -6,7 +6,8 @@ import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 import { Target, IToggleTargetAction } from '@src/redux_/currencies';
 import { styles, ClassNames } from './styles';
 
-interface ITargetSelectorProps {
+export interface ITargetSelectorProps {
+  loading: boolean;
   target: Target;
   toggleTarget: (target: Target) => IToggleTargetAction;
 }

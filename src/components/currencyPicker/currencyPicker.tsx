@@ -1,4 +1,4 @@
-import React, { StatelessComponent, PureComponent, ReactNode, ChangeEvent } from 'react';
+import React, { PureComponent, ReactNode, ChangeEvent } from 'react';
 import Autosuggest from 'react-autosuggest';
 import { withStyles, WithStyles } from 'material-ui/styles';
 

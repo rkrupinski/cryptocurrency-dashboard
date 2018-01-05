@@ -5,7 +5,6 @@ export type ClassNames =
 
 export const styles = (theme: Theme) => ({
   radiogroup: {
-    display: 'flex',
     flexDirection: 'row' as 'row',
   },
 });

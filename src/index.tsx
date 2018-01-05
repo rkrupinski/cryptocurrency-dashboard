@@ -1,4 +1,4 @@
-import React, { StatelessComponent } from 'react';
+import React, { SFC } from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
@@ -22,7 +22,7 @@ if (module.hot) {
   });
 }
 
-function render(RootComponent: StatelessComponent<IRootProps>) {
+function render(RootComponent: SFC<IRootProps>) {
   ReactDOM.render(
     (
       <AppContainer>

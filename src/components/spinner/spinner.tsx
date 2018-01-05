@@ -1,6 +1,6 @@
-import React, { StatelessComponent } from 'react';
+import React, { SFC } from 'react';
 import { CircularProgress } from 'material-ui/Progress';
 
-export const Spinner: StatelessComponent<{}> = () => (
+export const Spinner: SFC<{}> = () => (
   <CircularProgress />
 );
