@@ -1,4 +1,4 @@
-import { Price } from '.';
+import { IPrices } from '.';
 
 export enum ActionTypes {
   SET_PRICES = 'SET_PRICES',
@@ -8,7 +8,7 @@ export enum ActionTypes {
 
 export interface ISetPricesAction {
   type: ActionTypes.SET_PRICES;
-  payload: { [id: string]: Partial<Price> };
+  payload: IPrices;
 }
 
 export interface IPricesLoadingStartAction {

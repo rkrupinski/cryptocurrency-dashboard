@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 
-import { selectCurrencies } from '@src/redux_';
+import { selectCurrencies } from '@src/redux_/selectors';
+import { Currency } from '@src/redux_/currencies';
 
 export const selectRemainingCurrencies = createSelector(
   selectCurrencies,
@@ -17,9 +18,21 @@ export const selectTarget = createSelector(
   ({ target }) => target,
 );
 
-export const selectSelectedCurrenciesSymbols = createSelector(
+export const selectSelectedCurrencies = createSelector(
   selectCurrencies,
-  ({ all, selected }) => all
-      .filter(({ id }) => selected.find((selectedId) => selectedId === id))
-      .map(({ symbol }) => symbol),
+  ({ selected }) => selected,
+);
+
+export const selectValidCurrencies = createSelector(
+  selectCurrencies,
+  ({ all, selected }) => selected.reduce((acc: Currency[], selectedId) => {
+    const actual = all.find(({ id }) => id === selectedId);
+
+    return actual ? [...acc, actual] : acc;
+  }, []),
+);
+
+export const selectSelectedCurrenciesSymbols = createSelector(
+  selectValidCurrencies,
+  (valid) => valid.map(({ symbol }) => symbol),
 );

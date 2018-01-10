@@ -10,6 +10,7 @@ import {
 import {
   pricesLoadingStart,
   pricesLoadingStop,
+  setPrices,
 } from '@src/redux_/prices';
 import { IRootState } from '@src/redux_';
 
@@ -31,9 +32,7 @@ function* fetchPricesSaga() {
       { cancelToken: source.token },
     );
 
-    /* tslint:disable */
-    console.log('data', data);
-    /* tslint:enable */
+    yield put(setPrices(data));
   } catch (err) {
     // (☞ﾟ∀ﾟ)☞
   } finally {

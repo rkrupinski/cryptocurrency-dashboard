@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import { RootAction } from '@src/redux_';
-import { ActionTypes } from '.';
+import { ActionTypes, IPrices } from '.';
 
 export interface IState {
   readonly loading: boolean;
-  // readonly data: { }
+  readonly data: IPrices;
 }
 
 export const reducer = combineReducers<IState, RootAction>({
@@ -22,9 +22,13 @@ export const reducer = combineReducers<IState, RootAction>({
     }
   },
 
-  // data(state = {}, action) {
-  //   switch (action.type) {
-  //     case ActionTypes.
-  //   }
-  // },
+  data(state = {}, action) {
+    switch (action.type) {
+      case ActionTypes.SET_PRICES:
+        return action.payload;
+
+      default:
+        return state;
+    }
+  },
 });
