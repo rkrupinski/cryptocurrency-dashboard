@@ -20,6 +20,7 @@ export const renderInput = (props: IInputProps) => {
   const { classes, ref, ...other } = props;
 
   const inputProps = {
+    className: 'foo',
     classes: {
       input: classes.input,
     },

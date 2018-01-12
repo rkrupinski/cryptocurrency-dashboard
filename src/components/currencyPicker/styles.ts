@@ -9,12 +9,12 @@ export type ClassNames = // ¯\_(ツ)_/¯
 
 export const styles = (theme: Theme) => ({
   container: {
-    display: 'inline-block',
+    // display: 'block',
     // https://github.com/mui-org/material-ui/issues/8928
     position: 'relative' as 'relative', // ¯\_(ツ)_/¯
   },
   input: {
-    width: 250,
+    width: '100%',
   },
   suggestionsContainerOpen: {
     left: 0,
