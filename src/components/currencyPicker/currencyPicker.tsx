@@ -5,6 +5,7 @@ import { withStyles, WithStyles } from 'material-ui/styles';
 import { Currency, ICurrencySelectedAction } from '@src/redux_/currencies';
 import { renderInput, renderSuggestionsContainer, renderSuggestion } from './renderers';
 import { styles, ClassNames } from './styles';
+import { Container } from '@src/components/container';
 
 export interface ICurrencyPickerProps {
   currencies: Currency[];
@@ -53,18 +54,20 @@ export class CurrencyPickerRaw extends PureComponent<
     };
 
     return (
-      <Autosuggest
-        theme={theme}
-        renderInputComponent={renderInput}
-        renderSuggestionsContainer={renderSuggestionsContainer}
-        renderSuggestion={renderSuggestion}
-        onSuggestionsFetchRequested={fetchCallback}
-        onSuggestionsClearRequested={clearCallback}
-        onSuggestionSelected={this.onSuggestionSelected}
-        getSuggestionValue={this.getSuggestionValue}
-        suggestions={this.state.suggestions}
-        inputProps={inputProps}
-      />
+      <Container>
+        <Autosuggest
+          theme={theme}
+          renderInputComponent={renderInput}
+          renderSuggestionsContainer={renderSuggestionsContainer}
+          renderSuggestion={renderSuggestion}
+          onSuggestionsFetchRequested={fetchCallback}
+          onSuggestionsClearRequested={clearCallback}
+          onSuggestionSelected={this.onSuggestionSelected}
+          getSuggestionValue={this.getSuggestionValue}
+          suggestions={this.state.suggestions}
+          inputProps={inputProps}
+        />
+      </Container>
     );
   }
 

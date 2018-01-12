@@ -5,6 +5,7 @@ import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 
 import { Target, IToggleTargetAction } from '@src/redux_/currencies';
 import { styles, ClassNames } from './styles';
+import { Container } from '@src/components/container';
 
 export interface ITargetSelectorProps {
   loading: boolean;
@@ -25,27 +26,29 @@ export class TargetSelectorRaw extends PureComponent<
     const { target, classes } = this.props;
 
     return (
-      <FormControl component={'fieldset'}>
-        <FormLabel component={'legend'}>Target</FormLabel>
-        <RadioGroup
-          className={classes.radiogroup}
-          aria-label={'Target'}
-          name={'target'}
-          value={target}
-          onChange={this.handleChange}
-        >
-          <FormControlLabel
-            control={<Radio />}
-            label={'USD'}
-            value={'USD'}
-          />
-          <FormControlLabel
-            control={<Radio />}
-            label={'EUR'}
-            value={'EUR'}
-          />
-        </RadioGroup>
-      </FormControl>
+      <Container>
+        <FormControl component={'fieldset'}>
+          <FormLabel component={'legend'}>Target</FormLabel>
+          <RadioGroup
+            className={classes.radiogroup}
+            aria-label={'Target'}
+            name={'target'}
+            value={target}
+            onChange={this.handleChange}
+          >
+            <FormControlLabel
+              control={<Radio />}
+              label={'USD'}
+              value={'USD'}
+            />
+            <FormControlLabel
+              control={<Radio />}
+              label={'EUR'}
+              value={'EUR'}
+            />
+          </RadioGroup>
+        </FormControl>
+      </Container>
     );
   }
 
