@@ -12,6 +12,6 @@ exports[`Renders root 1`] = `
     }
   }
 >
-  <Connect(App) />
+  <Connect(withStyles(AppRaw)) />
 </Provider>
 `;

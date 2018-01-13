@@ -1,4 +1,5 @@
 import React, { SFC } from 'react';
+import Typography from 'material-ui/Typography';
 
 import { Target, Currency } from '@src/redux_/currencies';
 import { Price } from '@src/redux_/prices';
@@ -26,7 +27,8 @@ export const CurrencyWidget: SFC<ICurrencyWidgetProps> = ({
 
   return (
     <Container>
-      <div>{name}: {p}</div>
+      <Typography type={'headline'}>{name}</Typography>
+      <p>{p}</p>
       {priceLoading && <Spinner spinnerProps={spinnerProps} />}
     </Container>
   );

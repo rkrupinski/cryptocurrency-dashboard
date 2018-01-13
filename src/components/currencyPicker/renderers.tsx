@@ -8,29 +8,22 @@ import { MenuItem } from 'material-ui/Menu';
 
 import { Currency } from '@src/redux_/currencies';
 
-interface IInputProps {
-  value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  ref?: any;
-  classes?: any;
-}
-
-export const renderInput = (props: IInputProps) => {
-  const { classes, ref, ...other } = props;
+export const renderInput = (props: InputProps<Currency>) => {
+  const { ref, value, defaultValue, classes, label, ...other } = props;
 
   const inputProps = {
-    className: 'foo',
     classes: {
-      input: classes.input,
     },
     ...other,
   };
 
   return (
     <TextField
+      fullWidth={true}
       inputRef={ref}
       InputProps={inputProps}
+      label={label}
+      value={value}
     />
   );
 };

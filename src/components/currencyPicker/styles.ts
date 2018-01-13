@@ -3,7 +3,6 @@ import { Theme } from 'material-ui/styles';
 // https://github.com/mui-org/material-ui/issues/8824
 export type ClassNames = // ¯\_(ツ)_/¯
   | 'container'
-  | 'input'
   | 'suggestionsContainerOpen'
   | 'suggestionsList';
 
@@ -13,13 +12,11 @@ export const styles = (theme: Theme) => ({
     // https://github.com/mui-org/material-ui/issues/8928
     position: 'relative' as 'relative', // ¯\_(ツ)_/¯
   },
-  input: {
-    width: '100%',
-  },
   suggestionsContainerOpen: {
     left: 0,
     position: 'absolute' as 'absolute',
     right: 0,
+    zIndex: theme.zIndex.dialog,
   },
   suggestionsList: {
     listStyle: 'none',

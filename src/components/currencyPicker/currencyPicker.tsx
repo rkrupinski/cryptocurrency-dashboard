@@ -48,8 +48,9 @@ export class CurrencyPickerRaw extends PureComponent<
 
     const inputProps = {
       classes,
+      label: 'Currency',
       onChange: changeCallback,
-      placeholder: 'Search currencies by name',
+      placeholder: 'Search by name',
       value: this.state.value,
     };
 

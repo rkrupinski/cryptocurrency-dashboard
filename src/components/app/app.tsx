@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
+import { withStyles, WithStyles } from 'material-ui/styles';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
+import { styles, ClassNames } from './styles';
 import { Currency, IFetchCurrenciesAction } from '@src/redux_/currencies';
 import { CurrencyPickerConnected as CurrencyPicker } from '@src/components/currencyPicker';
 import { TargetSelectorConnected as TargetSelector } from '@src/components/targetSelector';
@@ -15,7 +17,10 @@ interface IAppProps {
 
 const GridLayout = WidthProvider(ReactGridLayout);
 
-export class App extends PureComponent<IAppProps, {}> {
+export class AppRaw extends PureComponent<
+  IAppProps & WithStyles<ClassNames>,
+  {}
+> {
   public componentDidMount() {
     this.props.fetchCurrencies();
   }
@@ -53,3 +58,5 @@ export class App extends PureComponent<IAppProps, {}> {
     );
   }
 }
+
+export const App = withStyles(styles)(AppRaw);
