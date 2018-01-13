@@ -47,7 +47,7 @@ export class AppRaw extends PureComponent<
         layout={layout}
         rowHeight={100}
       >
-        <div key={'currency-picker'}>
+        <div key={'currency-picker'} style={{ zIndex: 2 }}>
           <CurrencyPicker />
         </div>
         <div key={'target-selector'}>

@@ -47,7 +47,7 @@ export class CurrencyPickerRaw extends PureComponent<
     const clearCallback = this.onSuggestionsClear.bind(this);
 
     const inputProps = {
-      classes,
+      classes: {},
       label: 'Currency',
       onChange: changeCallback,
       placeholder: 'Search by name',

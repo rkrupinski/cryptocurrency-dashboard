@@ -12,6 +12,10 @@ exports[`Renders root 1`] = `
     }
   }
 >
-  <Connect(withStyles(AppRaw)) />
+  <IntlProvider
+    locale="en-US"
+  >
+    <Connect(withStyles(AppRaw)) />
+  </IntlProvider>
 </Provider>
 `;

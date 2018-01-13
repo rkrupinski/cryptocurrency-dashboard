@@ -1,5 +1,6 @@
 import React, { SFC } from 'react';
 import Typography from 'material-ui/Typography';
+import { FormattedNumber } from 'react-intl';
 
 import { Target, Currency } from '@src/redux_/currencies';
 import { Price } from '@src/redux_/prices';
@@ -19,17 +20,26 @@ export const CurrencyWidget: SFC<ICurrencyWidgetProps> = ({
   priceLoading,
   target,
 }) => {
-  const p = price && price[target];
+  const renderPrice = price && !priceLoading && (
+    <Typography type={'display1'}>
+      <FormattedNumber
+        value={price[target]}
+        style={'currency'}
+        currency={target}
+        maximumFractionDigits={6}
+      />
+    </Typography>
+  );
 
-  const spinnerProps = {
-    size: 20,
-  };
+  const renderPriceSpinner = priceLoading && (
+    <Spinner spinnerProps={{ size: 35 }} />
+  );
 
   return (
     <Container>
       <Typography type={'headline'}>{name}</Typography>
-      <p>{p}</p>
-      {priceLoading && <Spinner spinnerProps={spinnerProps} />}
+      {renderPrice}
+      {renderPriceSpinner}
     </Container>
   );
 };

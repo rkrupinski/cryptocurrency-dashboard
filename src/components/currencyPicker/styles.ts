@@ -16,7 +16,6 @@ export const styles = (theme: Theme) => ({
     left: 0,
     position: 'absolute' as 'absolute',
     right: 0,
-    zIndex: theme.zIndex.dialog,
   },
   suggestionsList: {
     listStyle: 'none',
