@@ -7,6 +7,7 @@
       "@src",
       "redux-saga",
       "material-ui",
+      "material-ui-icons",
       "redux-localstorage",
       "autosuggest-highlight",
       "react-grid-layout",

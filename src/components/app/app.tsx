@@ -5,8 +5,8 @@ import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
 import { styles, ClassNames } from './styles';
-import { Currency, IFetchCurrenciesAction } from '@src/redux_/currencies';
 import { ISetLayoutAction } from '@src/redux_/layout';
+import { Currency, IFetchCurrenciesAction } from '@src/redux_/currencies';
 import { CurrencyPickerConnected as CurrencyPicker } from '@src/components/currencyPicker';
 import { TargetSelectorConnected as TargetSelector } from '@src/components/targetSelector';
 import { CurrencyWidgetConnected as CurrencyWidget } from '@src/components/currencyWidget';
@@ -16,6 +16,7 @@ interface IAppProps {
   setLayout: (layout: Layout[]) => ISetLayoutAction;
   currencies: Currency[];
   layout: Layout[];
+  pricesLoaded: boolean;
 }
 
 const GridLayout = WidthProvider(ReactGridLayout);
@@ -37,16 +38,21 @@ export class AppRaw extends PureComponent<
   public render() {
     const { currencies, layout } = this.props;
 
-    const renderCurrencies = currencies.map((currency) => (
-      <div key={currency.id}>
-        <CurrencyWidget currency={currency} />
-      </div>
-    ));
+    const renderCurrencies = currencies.map((currency) => {
+      const gridData = layout.find(({ i }) => i === currency.id);
+
+      return (
+        <div key={currency.id} data-grid={gridData}>
+          <CurrencyWidget currency={currency} />
+        </div>
+      );
+    });
 
     return (
       <GridLayout
         className={'layout'}
         cols={3}
+        draggableHandle={'.handle'}
         isResizable={false}
         layout={layout}
         onLayoutChange={this.onLayoutChange}
@@ -64,9 +70,11 @@ export class AppRaw extends PureComponent<
   }
 
   private onLayoutChange(layout: Layout[]) {
-    const { setLayout } = this.props;
+    const { setLayout, pricesLoaded } = this.props;
 
-    setLayout(layout);
+    if (pricesLoaded) {
+      setLayout(layout);
+    }
   }
 }
 

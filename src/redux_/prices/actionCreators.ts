@@ -4,6 +4,7 @@ import {
   ISetPricesAction,
   IPricesLoadingStartAction,
   IPricesLoadingStopAction,
+  IPricesLoadedAction,
 } from '.';
 
 export const setPrices = (
@@ -19,4 +20,8 @@ export const pricesLoadingStart = (): IPricesLoadingStartAction => ({
 
 export const pricesLoadingStop = (): IPricesLoadingStopAction => ({
   type: ActionTypes.PRICES_LOADING_STOP,
+});
+
+export const pricesLoaded = (): IPricesLoadedAction => ({
+  type: ActionTypes.PRICES_LOADED,
 });
