@@ -5,9 +5,11 @@ import pricesSaga from './prices';
 import loggerSaga from './logger';
 
 export function* rootSaga() {
-  yield all([
+  const sagas = [
     currenciesSaga(),
     pricesSaga(),
-    loggerSaga(),
-  ]);
+    process.env.NODE_ENV !== 'production' ? loggerSaga() : null,
+  ];
+
+  yield all(sagas.filter(Boolean));
 }

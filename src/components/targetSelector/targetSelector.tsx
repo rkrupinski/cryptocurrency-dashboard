@@ -28,7 +28,12 @@ export class TargetSelectorRaw extends PureComponent<
     return (
       <Container>
         <FormControl component={'fieldset'}>
-          <FormLabel component={'legend'}>Target</FormLabel>
+          <FormLabel
+            component={'legend'}
+            className={classes.legend}
+          >
+            Target
+          </FormLabel>
           <RadioGroup
             className={classes.radiogroup}
             aria-label={'Target'}

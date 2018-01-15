@@ -22,6 +22,7 @@ export const renderInput = (props: InputProps<Currency>) => {
       fullWidth={true}
       inputRef={ref}
       InputProps={inputProps}
+      InputLabelProps={{ shrink: true }}
       label={label}
       value={value}
     />

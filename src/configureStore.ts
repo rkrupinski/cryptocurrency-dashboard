@@ -29,6 +29,7 @@ const configureStore = (initialState?: IRootState) => {
     filter([
       'currencies.selected',
       'currencies.target',
+      'layout.current',
     ]),
   )(adapter(window.localStorage));
 

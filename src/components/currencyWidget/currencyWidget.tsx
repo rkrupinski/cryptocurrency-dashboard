@@ -21,14 +21,14 @@ export const CurrencyWidget: SFC<ICurrencyWidgetProps> = ({
   target,
 }) => {
   const renderPrice = price && !priceLoading && (
-    <Typography type={'display1'}>
-      <FormattedNumber
-        value={price[target]}
-        style={'currency'}
-        currency={target}
-        maximumFractionDigits={6}
-      />
-    </Typography>
+    <FormattedNumber
+      value={price[target]}
+      style={'currency'}
+      currency={target}
+      maximumFractionDigits={6}
+    >
+      {(f: string) => <Typography type={'display1'}>{f}</Typography>}
+    </FormattedNumber>
   );
 
   const renderPriceSpinner = priceLoading && (
@@ -37,7 +37,7 @@ export const CurrencyWidget: SFC<ICurrencyWidgetProps> = ({
 
   return (
     <Container>
-      <Typography type={'headline'}>{name}</Typography>
+      <Typography type={'title'} gutterBottom={true}>{name}</Typography>
       {renderPrice}
       {renderPriceSpinner}
     </Container>

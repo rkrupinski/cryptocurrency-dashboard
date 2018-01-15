@@ -1,18 +1,21 @@
 import React, { PureComponent } from 'react';
-import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
+import ReactGridLayout, { WidthProvider, Layout } from 'react-grid-layout';
 import { withStyles, WithStyles } from 'material-ui/styles';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
 import { styles, ClassNames } from './styles';
 import { Currency, IFetchCurrenciesAction } from '@src/redux_/currencies';
+import { ISetLayoutAction } from '@src/redux_/layout';
 import { CurrencyPickerConnected as CurrencyPicker } from '@src/components/currencyPicker';
 import { TargetSelectorConnected as TargetSelector } from '@src/components/targetSelector';
 import { CurrencyWidgetConnected as CurrencyWidget } from '@src/components/currencyWidget';
 
 interface IAppProps {
   fetchCurrencies: () => IFetchCurrenciesAction;
+  setLayout: (layout: Layout[]) => ISetLayoutAction;
   currencies: Currency[];
+  layout: Layout[];
 }
 
 const GridLayout = WidthProvider(ReactGridLayout);
@@ -21,19 +24,20 @@ export class AppRaw extends PureComponent<
   IAppProps & WithStyles<ClassNames>,
   {}
 > {
+  constructor(props: IAppProps & WithStyles<ClassNames>) {
+    super(props);
+
+    this.onLayoutChange = this.onLayoutChange.bind(this);
+  }
+
   public componentDidMount() {
     this.props.fetchCurrencies();
   }
 
   public render() {
-    const { currencies } = this.props;
+    const { currencies, layout } = this.props;
 
-    const layout = [
-      { i: 'currency-picker', x: 0, y: 0, w: 1, h: 1, static: true },
-      { i: 'target-selector', x: 1, y: 0, w: 1, h: 1, static: true },
-    ];
-
-    const renderCurrencies = currencies.map((currency, index) => (
+    const renderCurrencies = currencies.map((currency) => (
       <div key={currency.id}>
         <CurrencyWidget currency={currency} />
       </div>
@@ -45,6 +49,7 @@ export class AppRaw extends PureComponent<
         cols={3}
         isResizable={false}
         layout={layout}
+        onLayoutChange={this.onLayoutChange}
         rowHeight={100}
       >
         <div key={'currency-picker'} style={{ zIndex: 2 }}>
@@ -56,6 +61,12 @@ export class AppRaw extends PureComponent<
         {renderCurrencies}
       </GridLayout>
     );
+  }
+
+  private onLayoutChange(layout: Layout[]) {
+    const { setLayout } = this.props;
+
+    setLayout(layout);
   }
 }
 
