@@ -1,1 +1,1 @@
-# cryptocurrency-dashboard
+# Cryptocurrency dashboard
