@@ -5,8 +5,8 @@ const API_URL = 'https://min-api.cryptocompare.com/data';
 const buildUrl = (tail: string) => API_URL + tail;
 
 const chartModes: { [key in ChartMode]: [string, number] } = {
-  day: ['histohour', 24],
-  hour: ['histominute', 60],
+  day: ['histohour', 24 - 1],
+  hour: ['histominute', 60 - 1],
 };
 
 export const currenciesUrl = () => buildUrl('/all/coinlist');
