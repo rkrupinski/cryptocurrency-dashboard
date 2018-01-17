@@ -16,3 +16,8 @@ export const selectPrices = createSelector(
   ({ prices }: IRootState) => prices,
   (prices) => prices,
 );
+
+export const selectCharts = createSelector(
+  ({ charts }: IRootState) => charts,
+  (charts) => charts,
+);

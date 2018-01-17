@@ -39,7 +39,7 @@ export class CurrencyWidgetRaw extends PureComponent<
         currency={target}
         maximumFractionDigits={6}
       >
-        {(f: string) => <Typography type={'display1'}>{f}</Typography>}
+        {(f: string) => <Typography type={'display1'} className={classes.price}>{f}</Typography>}
       </FormattedNumber>
     );
 

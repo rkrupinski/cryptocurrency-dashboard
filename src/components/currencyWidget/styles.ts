@@ -3,7 +3,14 @@ import { grey } from 'material-ui/colors';
 
 export type ClassNames =
   | 'currencyName'
-  | 'deselectBtn';
+  | 'deselectBtn'
+  | 'price';
+
+const ellipsis = {
+  overflow: 'hidden' as 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+};
 
 export const styles = (theme: Theme) => ({
   currencyName: {
@@ -13,10 +20,14 @@ export const styles = (theme: Theme) => ({
     },
     cursor: 'move',
     marginRight: '40px',
+    ...ellipsis,
   },
   deselectBtn: {
     position: 'absolute' as 'absolute',
     right: '3px',
     top: '3px',
+  },
+  price: {
+    ...ellipsis,
   },
 });

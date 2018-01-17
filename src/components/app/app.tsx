@@ -9,6 +9,7 @@ import { ISetLayoutAction } from '@src/redux_/layout';
 import { Currency, IFetchCurrenciesAction } from '@src/redux_/currencies';
 import { CurrencyPickerConnected as CurrencyPicker } from '@src/components/currencyPicker';
 import { TargetSelectorConnected as TargetSelector } from '@src/components/targetSelector';
+import { ChartModeSelectorConnected as ChartModeSelector } from '@src/components/chartModeSelector';
 import { CurrencyWidgetConnected as CurrencyWidget } from '@src/components/currencyWidget';
 
 interface IAppProps {
@@ -51,18 +52,21 @@ export class AppRaw extends PureComponent<
     return (
       <GridLayout
         className={'layout'}
-        cols={3}
+        cols={4}
         draggableHandle={'.handle'}
         isResizable={false}
         layout={layout}
         onLayoutChange={this.onLayoutChange}
-        rowHeight={100}
+        rowHeight={90}
       >
         <div key={'currency-picker'} style={{ zIndex: 2 }}>
           <CurrencyPicker />
         </div>
         <div key={'target-selector'}>
           <TargetSelector />
+        </div>
+        <div key={'chart-mode-selector'}>
+          <ChartModeSelector />
         </div>
         {renderCurrencies}
       </GridLayout>
