@@ -2,13 +2,16 @@ import React, { PureComponent } from 'react';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
+import Divider from 'material-ui/Divider';
 import { withStyles, WithStyles } from 'material-ui/styles';
 import { FormattedNumber } from 'react-intl';
 
 import { Target, Currency, ICurrencyDeselectedAction } from '@src/redux_/currencies';
 import { Price } from '@src/redux_/prices';
+import { ChartData } from '@src/redux_/charts';
 import { Spinner } from '@src/components/spinner';
 import { Container } from '@src/components/container';
+import { PriceChart } from '@src/components/priceChart';
 import { styles, ClassNames } from './styles';
 
 export interface ICurrencyWidgetProps {
@@ -16,6 +19,8 @@ export interface ICurrencyWidgetProps {
   deselectCurrency: (currency: Currency) => ICurrencyDeselectedAction;
   price: Price;
   priceLoading: boolean;
+  chartData: ChartData[];
+  chartDataLoading: boolean;
   target: Target;
 }
 
@@ -29,6 +34,8 @@ export class CurrencyWidgetRaw extends PureComponent<
       currency: { name },
       price,
       priceLoading,
+      chartData,
+      chartDataLoading,
       target,
     } = this.props;
 
@@ -47,6 +54,14 @@ export class CurrencyWidgetRaw extends PureComponent<
       <Spinner spinnerProps={{ size: 35 }} />
     );
 
+    const renderChart = chartData && !chartDataLoading && (
+      <PriceChart data={chartData} />
+    );
+
+    const renderChartSpinner = chartDataLoading && (
+      <Spinner spinnerProps={{ size: 35 }} />
+    );
+
     return (
       <Container>
         <IconButton
@@ -56,6 +71,7 @@ export class CurrencyWidgetRaw extends PureComponent<
         >
           <DeleteIcon />
         </IconButton>
+
         <Typography
           className={`handle ${classes.currencyName}`}
           type={'title'}
@@ -63,8 +79,14 @@ export class CurrencyWidgetRaw extends PureComponent<
         >
           {name}
         </Typography>
+
         {renderPrice}
         {renderPriceSpinner}
+
+        <Divider className={classes.divider} />
+
+        {renderChart}
+        {renderChartSpinner}
       </Container>
     );
   }

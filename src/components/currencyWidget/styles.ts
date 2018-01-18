@@ -4,6 +4,7 @@ import { grey } from 'material-ui/colors';
 export type ClassNames =
   | 'currencyName'
   | 'deselectBtn'
+  | 'divider'
   | 'price';
 
 const ellipsis = {
@@ -26,6 +27,9 @@ export const styles = (theme: Theme) => ({
     position: 'absolute' as 'absolute',
     right: '3px',
     top: '3px',
+  },
+  divider: {
+    margin: '10px 0',
   },
   price: {
     ...ellipsis,
