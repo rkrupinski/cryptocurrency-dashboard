@@ -27,10 +27,10 @@ export const reducer = combineReducers<IState, RootAction>({
         {
           const { id, data } = action.payload;
 
-          return {
+          return data.length > 1 ? {
             ...state,
             [id]: data,
-          };
+          } : state;
         }
 
       default:

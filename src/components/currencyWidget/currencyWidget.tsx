@@ -3,6 +3,7 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
 import Divider from 'material-ui/Divider';
+import Grid from 'material-ui/Grid';
 import { withStyles, WithStyles } from 'material-ui/styles';
 import { FormattedNumber } from 'react-intl';
 
@@ -12,6 +13,7 @@ import { ChartData } from '@src/redux_/charts';
 import { Spinner } from '@src/components/spinner';
 import { Container } from '@src/components/container';
 import { PriceChart } from '@src/components/priceChart';
+import { PriceChartMeta } from '@src/components/priceChartMeta';
 import { styles, ClassNames } from './styles';
 
 export interface ICurrencyWidgetProps {
@@ -39,6 +41,16 @@ export class CurrencyWidgetRaw extends PureComponent<
       target,
     } = this.props;
 
+    const renderFormattedPrice = (f: string) => (
+      <Typography
+        type={'display1'}
+        className={classes.price}
+        component={'span'}
+      >
+          {f}
+      </Typography>
+    );
+
     const renderPrice = price && !priceLoading && (
       <FormattedNumber
         value={price[target]}
@@ -46,7 +58,7 @@ export class CurrencyWidgetRaw extends PureComponent<
         currency={target}
         maximumFractionDigits={6}
       >
-        {(f: string) => <Typography type={'display1'} className={classes.price}>{f}</Typography>}
+        {renderFormattedPrice}
       </FormattedNumber>
     );
 
@@ -56,6 +68,10 @@ export class CurrencyWidgetRaw extends PureComponent<
 
     const renderChart = chartData && !chartDataLoading && (
       <PriceChart data={chartData} />
+    );
+
+    const renderChartMeta = chartData && !chartDataLoading && (
+      <PriceChartMeta data={chartData} />
     );
 
     const renderChartSpinner = chartDataLoading && (
@@ -85,8 +101,25 @@ export class CurrencyWidgetRaw extends PureComponent<
 
         <Divider className={classes.divider} />
 
-        {renderChart}
-        {renderChartSpinner}
+        <Grid
+          container={true}
+          alignItems={'center'}
+          spacing={0}
+        >
+          <Grid
+            item={true}
+            xs={9}
+          >
+            {renderChart}
+            {renderChartSpinner}
+          </Grid>
+          <Grid
+            item={true}
+            xs={3}
+          >
+            {renderChartMeta}
+          </Grid>
+        </Grid>
       </Container>
     );
   }
