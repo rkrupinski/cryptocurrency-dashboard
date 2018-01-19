@@ -41,6 +41,8 @@ export class CurrencyWidgetRaw extends PureComponent<
       target,
     } = this.props;
 
+    const shouldRenderChart = chartData && !!chartData.length && !chartDataLoading;
+
     const renderFormattedPrice = (f: string) => (
       <Typography
         type={'display1'}
@@ -66,11 +68,11 @@ export class CurrencyWidgetRaw extends PureComponent<
       <Spinner spinnerProps={{ size: 36 }} />
     );
 
-    const renderChart = chartData && !chartDataLoading && (
+    const renderChart = shouldRenderChart && (
       <PriceChart data={chartData} />
     );
 
-    const renderChartMeta = chartData && !chartDataLoading && (
+    const renderChartMeta = shouldRenderChart && (
       <PriceChartMeta data={chartData} />
     );
 
