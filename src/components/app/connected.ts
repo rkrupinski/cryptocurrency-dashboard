@@ -5,13 +5,11 @@ import { fetchCurrencies } from '@src/redux_/currencies';
 import { setLayout } from '@src/redux_/layout';
 import { selectCurrentLayout } from '@src/redux_/layout/selectors';
 import { selectValidCurrencies } from '@src/redux_/currencies/selectors';
-import { selectLoaded } from '@src/redux_/prices/selectors';
 import { App } from '.';
 
 const mapStateToProps = (state: IRootState) => ({
   currencies: selectValidCurrencies(state),
   layout: selectCurrentLayout(state),
-  pricesLoaded: selectLoaded(state),
 });
 
 const mapDispatchToProps = {

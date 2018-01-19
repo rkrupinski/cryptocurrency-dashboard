@@ -17,7 +17,6 @@ interface IAppProps {
   setLayout: (layout: Layout[]) => ISetLayoutAction;
   currencies: Currency[];
   layout: Layout[];
-  pricesLoaded: boolean;
 }
 
 const GridLayout = WidthProvider(ReactGridLayout);
@@ -74,11 +73,9 @@ export class AppRaw extends PureComponent<
   }
 
   private onLayoutChange(layout: Layout[]) {
-    const { setLayout, pricesLoaded } = this.props;
+    const { setLayout } = this.props;
 
-    if (pricesLoaded) {
-      setLayout(layout);
-    }
+    setLayout(layout);
   }
 }
 

@@ -8,11 +8,6 @@ export const selectData = createSelector(
   ({ data }) => data,
 );
 
-export const selectLoaded = createSelector(
-  selectPrices,
-  ({ loaded }) => loaded,
-);
-
 export const selectLoading = createSelector(
   selectPrices,
   ({ loading }) => loading,

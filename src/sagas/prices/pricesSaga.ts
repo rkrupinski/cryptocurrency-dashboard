@@ -10,7 +10,6 @@ import {
   ActionTypes,
   pricesLoadingStart,
   pricesLoadingStop,
-  pricesLoaded,
   setPrices,
 } from '@src/redux_/prices';
 import { IRootState } from '@src/redux_';
@@ -21,8 +20,6 @@ function* fetchPricesSaga() {
   const selectedSymbols = yield select(selectSelectedCurrenciesSymbols);
 
   if (!selectedSymbols.length) {
-    yield put(pricesLoaded());
-
     return;
   }
 
@@ -36,7 +33,6 @@ function* fetchPricesSaga() {
     );
 
     yield put(setPrices(data));
-    yield put(pricesLoaded());
   } catch (err) {
     // (☞ﾟ∀ﾟ)☞
   } finally {

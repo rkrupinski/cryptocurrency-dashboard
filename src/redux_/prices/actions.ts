@@ -6,7 +6,6 @@ export enum ActionTypes {
   SET_PRICES = 'SET_PRICES',
   PRICES_LOADING_START = 'PRICES_LOADING_START',
   PRICES_LOADING_STOP = 'PRICES_LOADING_STOP',
-  PRICES_LOADED = 'PRICES_LOADED',
 }
 
 export interface IFetchPricesAction {
@@ -26,13 +25,8 @@ export interface IPricesLoadingStopAction {
   type: ActionTypes.PRICES_LOADING_STOP;
 }
 
-export interface IPricesLoadedAction {
-  type: ActionTypes.PRICES_LOADED;
-}
-
 export type Actions =
   | IFetchPricesAction
   | ISetPricesAction
   | IPricesLoadingStartAction
-  | IPricesLoadingStopAction
-  | IPricesLoadedAction;
+  | IPricesLoadingStopAction;
