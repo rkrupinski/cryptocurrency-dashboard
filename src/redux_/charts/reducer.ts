@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 
 import { RootAction } from '@src/redux_';
-import { ActionTypes as CurrenciesActionTypes } from '@src/redux_/currencies';
 import { ActionTypes, ChartMode, ChartData } from '@src/redux_/charts';
 
 export interface IState {
@@ -13,12 +12,11 @@ export interface IState {
 export const reducer = combineReducers<IState, RootAction>({
   data(state = {}, action) {
     switch (action.type) {
-      case CurrenciesActionTypes.CURRENCY_DESELECTED:
+      case ActionTypes.REMOVE_CHART_DATA:
         {
-          const { id } = action.payload;
           const newState = { ...state };
 
-          delete newState[id];
+          delete newState[action.payload];
 
           return newState;
         }
@@ -40,12 +38,11 @@ export const reducer = combineReducers<IState, RootAction>({
 
   loading(state = {}, action) {
     switch (action.type) {
-      case CurrenciesActionTypes.CURRENCY_DESELECTED:
+      case ActionTypes.REMOVE_CHART_DATA:
         {
-          const { id } = action.payload;
           const newState = { ...state };
 
-          delete newState[id];
+          delete newState[action.payload];
 
           return newState;
         }

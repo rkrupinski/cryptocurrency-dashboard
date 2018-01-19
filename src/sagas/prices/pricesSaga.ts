@@ -2,12 +2,12 @@ import { takeLatest, put, cancelled, select, call } from 'redux-saga/effects';
 
 import http from '@src/common/http';
 import { pricesUrl } from '@src/common/urls';
-import { ActionTypes as CurrenciesActionTypes } from '@src/redux_/currencies';
 import {
   selectTarget,
   selectSelectedCurrenciesSymbols,
 } from '@src/redux_/currencies/selectors';
 import {
+  ActionTypes,
   pricesLoadingStart,
   pricesLoadingStop,
   pricesLoaded,
@@ -49,9 +49,5 @@ function* fetchPricesSaga() {
 }
 
 export default function* pricesSaga() {
-  yield takeLatest([
-    CurrenciesActionTypes.SET_CURRENCIES,
-    CurrenciesActionTypes.TOGGLE_TARGET,
-    CurrenciesActionTypes.CURRENCY_SELECTED,
-  ], fetchPricesSaga);
+  yield takeLatest(ActionTypes.FETCH_PRICES, fetchPricesSaga);
 }

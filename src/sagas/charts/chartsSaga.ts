@@ -3,22 +3,20 @@ import { all, put, call, select, takeEvery } from 'redux-saga/effects';
 import http, { CancelTokenSource } from '@src/common/http';
 import { chartsUrl } from '@src/common/urls';
 import { priceHistory as normalizePriceHistory} from '@src/common/normalize';
+import { Currency } from '@src/redux_/currencies';
 import {
-  ActionTypes as CurrenciesActionTypes,
-  ICurrencySelectedAction,
-  ICurrencyDeselectedAction,
-} from '@src/redux_/currencies';
-import { selectMode } from '@src/redux_/charts/selectors';
-import { selectTarget } from '@src/redux_/currencies/selectors';
-import {
+  ActionTypes,
+  IFetchChartDataAction,
   chartDataLoadingStart,
   chartDataLoadingStop,
   setChartData,
-} from '@src/redux_/charts';
+ } from '@src/redux_/charts';
+import { selectMode } from '@src/redux_/charts/selectors';
+import { selectTarget } from '@src/redux_/currencies/selectors';
 
 const pending: { [key: string]: CancelTokenSource } = {};
 
-function* currencySelectedSaga(action: ICurrencySelectedAction) {
+function* fetchChartDataSaga(action: IFetchChartDataAction) {
   const { id, symbol } = action.payload;
   const source = http.CancelToken.source();
   const mode = yield select(selectMode);
@@ -47,13 +45,8 @@ function* currencySelectedSaga(action: ICurrencySelectedAction) {
   }
 }
 
-function* currencyDeselectedSaga(action: ICurrencyDeselectedAction) {
-  yield 'TODO';
-}
-
 export default function* chartsSaga() {
   yield all([
-    takeEvery(CurrenciesActionTypes.CURRENCY_SELECTED, currencySelectedSaga),
-    takeEvery(CurrenciesActionTypes.CURRENCY_DESELECTED, currencyDeselectedSaga),
+    takeEvery(ActionTypes.FETCH_CHART_DATA, fetchChartDataSaga),
   ]);
 }

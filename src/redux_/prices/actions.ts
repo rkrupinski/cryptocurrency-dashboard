@@ -1,10 +1,16 @@
 import { IPrices } from '.';
+import { ActionType } from 'redux-saga/effects';
 
 export enum ActionTypes {
+  FETCH_PRICES = 'FETCH_PRICES',
   SET_PRICES = 'SET_PRICES',
   PRICES_LOADING_START = 'PRICES_LOADING_START',
   PRICES_LOADING_STOP = 'PRICES_LOADING_STOP',
   PRICES_LOADED = 'PRICES_LOADED',
+}
+
+export interface IFetchPricesAction {
+  type: ActionTypes.FETCH_PRICES;
 }
 
 export interface ISetPricesAction {
@@ -25,6 +31,7 @@ export interface IPricesLoadedAction {
 }
 
 export type Actions =
+  | IFetchPricesAction
   | ISetPricesAction
   | IPricesLoadingStartAction
   | IPricesLoadingStopAction

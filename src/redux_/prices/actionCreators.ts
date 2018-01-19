@@ -1,11 +1,16 @@
 import {
   Price,
   ActionTypes,
+  IFetchPricesAction,
   ISetPricesAction,
   IPricesLoadingStartAction,
   IPricesLoadingStopAction,
   IPricesLoadedAction,
 } from '.';
+
+export const fetchPrices = (): IFetchPricesAction => ({
+  type: ActionTypes.FETCH_PRICES,
+});
 
 export const setPrices = (
   prices: { [id: string]: Price },
