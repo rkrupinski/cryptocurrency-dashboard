@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { IRootState } from '@src/redux_';
 import { fetchCurrencies } from '@src/redux_/currencies';
-import { setLayout } from '@src/redux_/layout';
+import { setTmpLayout, syncLayout } from '@src/redux_/layout';
 import { selectCurrentLayout } from '@src/redux_/layout/selectors';
 import { selectValidCurrencies } from '@src/redux_/currencies/selectors';
 import { App } from '.';
@@ -14,7 +14,8 @@ const mapStateToProps = (state: IRootState) => ({
 
 const mapDispatchToProps = {
   fetchCurrencies,
-  setLayout,
+  setTmpLayout,
+  syncLayout,
 };
 
 export const AppConnected = connect(

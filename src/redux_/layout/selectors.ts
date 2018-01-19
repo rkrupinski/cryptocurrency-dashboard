@@ -6,3 +6,8 @@ export const selectCurrentLayout = createSelector(
   selectLayout,
   ({ current }) => current,
 );
+
+export const selectTmpLayout = createSelector(
+  selectLayout,
+  ({ tmp }) => tmp,
+);

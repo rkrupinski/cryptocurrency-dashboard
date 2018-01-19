@@ -4,6 +4,7 @@ import { ActionType } from 'redux-saga/effects';
 export enum ActionTypes {
   FETCH_PRICES = 'FETCH_PRICES',
   SET_PRICES = 'SET_PRICES',
+  REMOVE_PRICES = 'REMOVE_PRICES',
   PRICES_LOADING_START = 'PRICES_LOADING_START',
   PRICES_LOADING_STOP = 'PRICES_LOADING_STOP',
 }
@@ -13,8 +14,13 @@ export interface IFetchPricesAction {
 }
 
 export interface ISetPricesAction {
-  type: ActionTypes.SET_PRICES;
   payload: IPrices;
+  type: ActionTypes.SET_PRICES;
+}
+
+export interface IRemovePricesAction {
+  payload: string;
+  type: ActionTypes.REMOVE_PRICES;
 }
 
 export interface IPricesLoadingStartAction {
@@ -28,5 +34,6 @@ export interface IPricesLoadingStopAction {
 export type Actions =
   | IFetchPricesAction
   | ISetPricesAction
+  | IRemovePricesAction
   | IPricesLoadingStartAction
   | IPricesLoadingStopAction;

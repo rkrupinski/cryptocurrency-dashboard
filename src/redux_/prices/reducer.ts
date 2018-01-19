@@ -27,6 +27,15 @@ export const reducer = combineReducers<IState, RootAction>({
       case ActionTypes.SET_PRICES:
         return action.payload;
 
+      case ActionTypes.REMOVE_PRICES:
+        {
+          const newState = { ...state };
+
+          delete newState[action.payload];
+
+          return newState;
+        }
+
       default:
         return state;
     }

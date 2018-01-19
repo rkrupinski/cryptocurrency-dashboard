@@ -3,6 +3,7 @@ import {
   ActionTypes,
   IFetchPricesAction,
   ISetPricesAction,
+  IRemovePricesAction,
   IPricesLoadingStartAction,
   IPricesLoadingStopAction,
 } from '.';
@@ -16,6 +17,11 @@ export const setPrices = (
 ): ISetPricesAction => ({
   payload: prices,
   type: ActionTypes.SET_PRICES,
+});
+
+export const removePrices = (symbol: string): IRemovePricesAction => ({
+  payload: symbol,
+  type: ActionTypes.REMOVE_PRICES,
 });
 
 export const pricesLoadingStart = (): IPricesLoadingStartAction => ({

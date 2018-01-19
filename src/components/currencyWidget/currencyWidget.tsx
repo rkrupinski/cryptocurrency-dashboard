@@ -63,7 +63,7 @@ export class CurrencyWidgetRaw extends PureComponent<
     );
 
     const renderPriceSpinner = priceLoading && (
-      <Spinner spinnerProps={{ size: 35 }} />
+      <Spinner spinnerProps={{ size: 36 }} />
     );
 
     const renderChart = chartData && !chartDataLoading && (
@@ -75,7 +75,7 @@ export class CurrencyWidgetRaw extends PureComponent<
     );
 
     const renderChartSpinner = chartDataLoading && (
-      <Spinner spinnerProps={{ size: 35 }} />
+      <Spinner spinnerProps={{ size: 36 }} />
     );
 
     return (

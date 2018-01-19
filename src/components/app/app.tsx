@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import ReactGridLayout, { WidthProvider, Layout } from 'react-grid-layout';
 import { withStyles, WithStyles } from 'material-ui/styles';
+
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
 import { styles, ClassNames } from './styles';
-import { ISetLayoutAction } from '@src/redux_/layout';
+import { ISetTmpLayoutAction, ISyncLayoutAction } from '@src/redux_/layout';
 import { Currency, IFetchCurrenciesAction } from '@src/redux_/currencies';
 import { CurrencyPickerConnected as CurrencyPicker } from '@src/components/currencyPicker';
 import { TargetSelectorConnected as TargetSelector } from '@src/components/targetSelector';
@@ -14,7 +15,8 @@ import { CurrencyWidgetConnected as CurrencyWidget } from '@src/components/curre
 
 interface IAppProps {
   fetchCurrencies: () => IFetchCurrenciesAction;
-  setLayout: (layout: Layout[]) => ISetLayoutAction;
+  setTmpLayout: (layout: Layout[]) => ISetTmpLayoutAction;
+  syncLayout: () => ISyncLayoutAction;
   currencies: Currency[];
   layout: Layout[];
 }
@@ -29,6 +31,7 @@ export class AppRaw extends PureComponent<
     super(props);
 
     this.onLayoutChange = this.onLayoutChange.bind(this);
+    this.onDragStop = this.onDragStop.bind(this);
   }
 
   public componentDidMount() {
@@ -56,6 +59,7 @@ export class AppRaw extends PureComponent<
         isResizable={false}
         layout={layout}
         onLayoutChange={this.onLayoutChange}
+        onDragStop={this.onDragStop}
         rowHeight={90}
       >
         <div key={'currency-picker'} style={{ zIndex: 2 }}>
@@ -73,9 +77,15 @@ export class AppRaw extends PureComponent<
   }
 
   private onLayoutChange(layout: Layout[]) {
-    const { setLayout } = this.props;
+    const { setTmpLayout } = this.props;
 
-    setLayout(layout);
+    setTmpLayout(layout);
+  }
+
+  private onDragStop() {
+    const { syncLayout } = this.props;
+
+    setTimeout(syncLayout);
   }
 }
 

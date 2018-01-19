@@ -12,12 +12,23 @@ const DEFAULT_LAYOUT = [
 
 export interface IState {
   readonly current: Layout[];
+  readonly tmp: Layout[];
 }
 
 export const reducer = combineReducers<IState, RootAction>({
   current(state = DEFAULT_LAYOUT, action) {
     switch (action.type) {
       case ActionTypes.SET_LAYOUT:
+        return action.payload;
+
+      default:
+        return state;
+    }
+  },
+
+  tmp(state = [], action) {
+    switch (action.type) {
+      case ActionTypes.SET_TMP_LAYOUT:
         return action.payload.map((item) =>
             item.static ? item : { ...item, h: 2 });
 
