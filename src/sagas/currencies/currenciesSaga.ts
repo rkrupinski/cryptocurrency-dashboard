@@ -38,11 +38,13 @@ function* fetchCurrenciesSaga() {
 }
 
 function* fetchDataSaga(action: Actions) {
-  yield put(fetchPrices());
 
   switch (action.type) {
     case ActionTypes.CURRENCY_SELECTED:
-      yield put(fetchChartData(action.payload));
+      yield all([
+        put(fetchPrices()),
+        put(fetchChartData(action.payload)),
+      ]);
       break;
 
     case ActionTypes.CURRENCY_DESELECTED:
