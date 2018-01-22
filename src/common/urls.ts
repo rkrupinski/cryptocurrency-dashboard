@@ -7,6 +7,7 @@ const buildUrl = (tail: string) => API_URL + tail;
 const chartModes: { [key in ChartMode]: [string, number] } = {
   day: ['histohour', 24 - 1],
   hour: ['histominute', 60 - 1],
+  month: ['histoday', 30 - 1],
 };
 
 export const currenciesUrl = () => buildUrl('/all/coinlist');

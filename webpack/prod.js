@@ -2,7 +2,7 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MinifyPlugin = require("babel-minify-webpack-plugin");
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 module.exports = {
   output: {

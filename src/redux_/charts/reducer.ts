@@ -64,7 +64,7 @@ export const reducer = combineReducers<IState, RootAction>({
     }
   },
 
-  mode(state = 'hour', action) {
+  mode(state = 'day', action) {
     switch (action.type) {
       case ActionTypes.TOGGLE_CHART_MODE:
         return action.payload;

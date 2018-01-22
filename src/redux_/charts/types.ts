@@ -1,5 +1,5 @@
-export type ChartMode = 'hour' | 'day';
+export type ChartMode = 'hour' | 'day' | 'month';
 
 export type ChartData = {
   price: number;
-}
+};

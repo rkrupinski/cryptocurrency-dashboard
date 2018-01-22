@@ -1,10 +1,10 @@
 import React, { PureComponent, ChangeEvent } from 'react';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import { withStyles, WithStyles } from 'material-ui/styles';
-import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
+import Select from 'material-ui/Select';
+import Input, { InputLabel } from 'material-ui/Input';
+import { MenuItem } from 'material-ui/Menu';
+import { FormControl } from 'material-ui/Form';
 
 import { ChartMode, IToggleChartModeAction } from '@src/redux_/charts';
-import { styles, ClassNames } from './styles';
 import { Container } from '@src/components/container';
 
 export interface IChartModeSelectorProps {
@@ -13,58 +13,37 @@ export interface IChartModeSelectorProps {
   toggleChartMode: (mode: ChartMode) => IToggleChartModeAction;
 }
 
-export class ChartModeSelectorRaw extends PureComponent<
-  IChartModeSelectorProps & WithStyles<ClassNames>
-> {
-  constructor(props: IChartModeSelectorProps & WithStyles<ClassNames>) {
+export class ChartModeSelector extends PureComponent<IChartModeSelectorProps> {
+  constructor(props: IChartModeSelectorProps) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   public render() {
-    const { mode, classes } = this.props;
+    const { mode } = this.props;
 
     return (
       <Container>
-        <FormControl component={'fieldset'}>
-          <FormLabel
-            component={'legend'}
-            className={classes.legend}
-          >
-            Charts
-          </FormLabel>
-          <RadioGroup
-            className={classes.radiogroup}
-            aria-label={'Charts'}
-            name={'mode'}
+        <FormControl fullWidth={true}>
+          <InputLabel htmlFor={'chart-mode'}>Charts</InputLabel>
+          <Select
             value={mode}
             onChange={this.handleChange}
+            input={<Input name={'chart-mode'} id={'chart-mode'} />}
           >
-            <FormControlLabel
-              control={<Radio />}
-              label={'Hour'}
-              value={'hour'}
-            />
-            <FormControlLabel
-              control={<Radio />}
-              label={'Day'}
-              value={'day'}
-            />
-          </RadioGroup>
+            <MenuItem value={'hour'}>Last hour</MenuItem>
+            <MenuItem value={'day'}>Last day</MenuItem>
+            <MenuItem value={'month'}>Last month</MenuItem>
+          </Select>
         </FormControl>
       </Container>
     );
   }
 
-  private handleChange(
-    e: ChangeEvent<any>,
-    mode: string,
-  ) {
+  private handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { toggleChartMode } = this.props;
 
-    toggleChartMode(mode as ChartMode);
+    toggleChartMode(e.target.value as ChartMode);
   }
 }
-
-export const ChartModeSelector = withStyles(styles)(ChartModeSelectorRaw);
