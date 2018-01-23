@@ -16,3 +16,4 @@ https://rkrupinski.github.io/cryptocurrency-dashboard/
 ### TODO:
 
 * layout breakpoints
+* permalinks

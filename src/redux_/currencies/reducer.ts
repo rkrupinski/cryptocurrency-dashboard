@@ -10,6 +10,10 @@ export interface IState {
   readonly target: Target;
 }
 
+const SELECTED_BY_DEFAULT = [
+  '1182', // BTC
+];
+
 export const reducer = combineReducers<IState, RootAction>({
   all(state = [], action) {
     switch (action.type) {
@@ -34,7 +38,7 @@ export const reducer = combineReducers<IState, RootAction>({
     }
   },
 
-  selected(state = [], action) {
+  selected(state = SELECTED_BY_DEFAULT, action) {
     switch (action.type) {
       case ActionTypes.CURRENCY_SELECTED:
         {
