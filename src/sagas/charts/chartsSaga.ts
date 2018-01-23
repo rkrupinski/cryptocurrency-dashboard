@@ -1,4 +1,4 @@
-import { all, put, call, select, takeEvery } from 'redux-saga/effects';
+import { put, call, select, takeEvery } from 'redux-saga/effects';
 
 import http, { CancelTokenSource } from '@src/common/http';
 import { chartsUrl } from '@src/common/urls';
@@ -37,6 +37,8 @@ function* fetchChartDataSaga(action: IFetchChartDataAction) {
       { cancelToken: source.token },
     );
 
+    delete pending[id];
+
     yield put(setChartData(id, normalizePriceHistory(data.Data)));
   } catch (err) {
     // (☞ﾟ∀ﾟ)☞
@@ -46,7 +48,5 @@ function* fetchChartDataSaga(action: IFetchChartDataAction) {
 }
 
 export default function* chartsSaga() {
-  yield all([
-    takeEvery(ActionTypes.FETCH_CHART_DATA, fetchChartDataSaga),
-  ]);
+  yield takeEvery(ActionTypes.FETCH_CHART_DATA, fetchChartDataSaga);
 }

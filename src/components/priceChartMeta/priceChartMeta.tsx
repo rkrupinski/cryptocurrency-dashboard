@@ -45,7 +45,7 @@ export const PriceChartMetaRaw: SFC<
     <Grid
       container={true}
       justify={'flex-end'}
-      spacing={8}
+      spacing={0}
     >
       <Grid item={true}>
         <IconComponent className={`${className} ${classes.icon}`} />

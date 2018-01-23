@@ -43,10 +43,10 @@ export interface IToggleTargetAction {
 }
 
 export type Actions =
-  | IFetchCurrenciesAction
-  | ISetCurrenciesAction
-  | ICurrenciesLoadingStartAction
-  | ICurrenciesLoadingStopAction
-  | ICurrencySelectedAction
-  | ICurrencyDeselectedAction
-  | IToggleTargetAction;
+    | IFetchCurrenciesAction
+    | ISetCurrenciesAction
+    | ICurrenciesLoadingStartAction
+    | ICurrenciesLoadingStopAction
+    | ICurrencySelectedAction
+    | ICurrencyDeselectedAction
+    | IToggleTargetAction;

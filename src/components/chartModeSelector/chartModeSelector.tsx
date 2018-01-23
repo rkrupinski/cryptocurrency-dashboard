@@ -14,12 +14,6 @@ export interface IChartModeSelectorProps {
 }
 
 export class ChartModeSelector extends PureComponent<IChartModeSelectorProps> {
-  constructor(props: IChartModeSelectorProps) {
-    super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
   public render() {
     const { mode } = this.props;
 
@@ -41,7 +35,7 @@ export class ChartModeSelector extends PureComponent<IChartModeSelectorProps> {
     );
   }
 
-  private handleChange(e: ChangeEvent<HTMLInputElement>) {
+  private handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { toggleChartMode } = this.props;
 
     toggleChartMode(e.target.value as ChartMode);

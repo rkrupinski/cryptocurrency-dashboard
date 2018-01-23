@@ -41,9 +41,9 @@ export interface IRemoveChartDataAction {
 }
 
 export type Actions =
-  | IToggleChartModeAction
-  | IFetchChartDataAction
-  | IChartDataLoadingStartAction
-  | IChartDataLoadingStopAction
-  | ISetChartDataAction
-  | IRemoveChartDataAction;
+    | IToggleChartModeAction
+    | IFetchChartDataAction
+    | IChartDataLoadingStartAction
+    | IChartDataLoadingStopAction
+    | ISetChartDataAction
+    | IRemoveChartDataAction;

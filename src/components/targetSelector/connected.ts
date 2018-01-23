@@ -21,5 +21,5 @@ export const TargetSelectorConnected = compose<ITargetSelectorProps, {}>(
     mapStateToProps,
     mapDispatchToProps,
   ),
-  withSpinner<ITargetSelectorProps>(),
+  withSpinner(),
 )(TargetSelector);

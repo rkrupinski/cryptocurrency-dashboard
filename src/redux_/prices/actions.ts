@@ -32,8 +32,8 @@ export interface IPricesLoadingStopAction {
 }
 
 export type Actions =
-  | IFetchPricesAction
-  | ISetPricesAction
-  | IRemovePricesAction
-  | IPricesLoadingStartAction
-  | IPricesLoadingStopAction;
+    | IFetchPricesAction
+    | ISetPricesAction
+    | IRemovePricesAction
+    | IPricesLoadingStartAction
+    | IPricesLoadingStopAction;

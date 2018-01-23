@@ -21,5 +21,5 @@ export const CurrencyPickerConnected = compose<ICurrencyPickerProps, {}>(
     mapStateToProps,
     mapDispatchToProps,
   ),
-  withSpinner<ICurrencyPickerProps>(),
+  withSpinner(),
 )(CurrencyPicker);

@@ -31,6 +31,7 @@ const configureStore = (initialState?: IRootState) => {
       'currencies.target',
       'layout.current',
       'charts.mode',
+      'refresh.rate',
     ]),
   )(adapter(window.localStorage));
 

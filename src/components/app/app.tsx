@@ -11,6 +11,7 @@ import { Currency, IFetchCurrenciesAction } from '@src/redux_/currencies';
 import { CurrencyPickerConnected as CurrencyPicker } from '@src/components/currencyPicker';
 import { TargetSelectorConnected as TargetSelector } from '@src/components/targetSelector';
 import { ChartModeSelectorConnected as ChartModeSelector } from '@src/components/chartModeSelector';
+import { RefreshWidgetConnected as RefreshWidget } from '@src/components/refreshWidget';
 import { CurrencyWidgetConnected as CurrencyWidget } from '@src/components/currencyWidget';
 
 interface IAppProps {
@@ -39,7 +40,7 @@ export class AppRaw extends PureComponent<
   }
 
   public render() {
-    const { currencies, layout } = this.props;
+    const { currencies, layout, classes } = this.props;
 
     const renderCurrencies = currencies.map((currency) => {
       const gridData = layout.find(({ i }) => i === currency.id);
@@ -53,7 +54,7 @@ export class AppRaw extends PureComponent<
 
     return (
       <GridLayout
-        className={'layout'}
+        className={`layout ${classes.grid}`}
         cols={4}
         draggableHandle={'.handle'}
         isResizable={false}
@@ -70,6 +71,9 @@ export class AppRaw extends PureComponent<
         </div>
         <div key={'chart-mode-selector'}>
           <ChartModeSelector />
+        </div>
+        <div key={'refresh-widget'}>
+          <RefreshWidget />
         </div>
         {renderCurrencies}
       </GridLayout>

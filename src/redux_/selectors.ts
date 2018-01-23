@@ -1,23 +1,29 @@
 import { createSelector } from 'reselect';
 
 import { IRootState } from '.';
+import { identity } from '@src/common/utils';
 
 export const selectCurrencies = createSelector(
   ({ currencies }: IRootState) => currencies,
-  (currencies) => currencies,
+  identity,
 );
 
 export const selectLayout = createSelector(
   ({ layout }: IRootState) => layout,
-  (layout) => layout,
+  identity,
 );
 
 export const selectPrices = createSelector(
   ({ prices }: IRootState) => prices,
-  (prices) => prices,
+  identity,
 );
 
 export const selectCharts = createSelector(
   ({ charts }: IRootState) => charts,
-  (charts) => charts,
+  identity,
+);
+
+export const selectRefresh = createSelector(
+  ({ refresh }: IRootState) => refresh,
+  identity,
 );

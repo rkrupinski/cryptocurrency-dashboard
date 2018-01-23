@@ -1,4 +1,4 @@
-import { all, takeLatest, put, call, cancelled } from 'redux-saga/effects';
+import { takeLatest, put, call, cancelled } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
 import { currenciesUrl } from '@src/common/urls';
@@ -36,7 +36,5 @@ function* fetchCurrenciesSaga() {
 }
 
 export default function* currenciesSaga() {
-  yield all([
-    takeLatest(ActionTypes.FETCH_CURRENCIES, fetchCurrenciesSaga),
-  ]);
+  yield takeLatest(ActionTypes.FETCH_CURRENCIES, fetchCurrenciesSaga);
 }

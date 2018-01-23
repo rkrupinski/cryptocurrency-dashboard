@@ -1,26 +1,26 @@
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
-import { withSpinner } from '@src/components/withSpinner';
 import { IRootState } from '@src/redux_';
-import { toggleChartMode } from '@src/redux_/charts';
+import { withSpinner } from '@src/components/withSpinner';
+import { RefreshWidget, IRefreshWidgetProps } from '.';
 import { selectLoading } from '@src/redux_/currencies/selectors';
-import { selectMode } from '@src/redux_/charts/selectors';
-import { ChartModeSelector, IChartModeSelectorProps } from '.';
+import { setRefreshRate } from '@src/redux_/refresh';
+import { selectRefreshRate } from '@src/redux_/refresh/selectors';
 
 const mapStateToProps = (state: IRootState) => ({
   loading: selectLoading(state),
-  mode: selectMode(state),
+  refreshRate: selectRefreshRate(state),
 });
 
 const mapDispatchToProps = {
-  toggleChartMode,
+  setRefreshRate,
 };
 
-export const ChartModeSelectorConnected = compose<IChartModeSelectorProps, {}>(
+export const RefreshWidgetConnected = compose<IRefreshWidgetProps, {}>(
   connect(
     mapStateToProps,
     mapDispatchToProps,
   ),
   withSpinner(),
-)(ChartModeSelector);
+)(RefreshWidget);

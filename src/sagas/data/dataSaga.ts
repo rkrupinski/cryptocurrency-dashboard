@@ -66,13 +66,11 @@ function* fetchDataSaga(action: Triggers) {
 }
 
 export default function* dataSaga() {
-  yield all([
-    takeEvery([
-      CurrenciesActionTypes.SET_CURRENCIES,
-      CurrenciesActionTypes.TOGGLE_TARGET,
-      CurrenciesActionTypes.CURRENCY_SELECTED,
-      CurrenciesActionTypes.CURRENCY_DESELECTED,
-      ChartsActionTypes.TOGGLE_CHART_MODE,
-    ], fetchDataSaga),
-  ]);
+  yield takeEvery([
+    CurrenciesActionTypes.SET_CURRENCIES,
+    CurrenciesActionTypes.TOGGLE_TARGET,
+    CurrenciesActionTypes.CURRENCY_SELECTED,
+    CurrenciesActionTypes.CURRENCY_DESELECTED,
+    ChartsActionTypes.TOGGLE_CHART_MODE,
+  ], fetchDataSaga);
 }

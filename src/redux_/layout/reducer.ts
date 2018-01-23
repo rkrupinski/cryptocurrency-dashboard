@@ -8,6 +8,7 @@ const DEFAULT_LAYOUT = [
   { i: 'currency-picker',     x: 0, y: 0, w: 1, h: 1, static: true },
   { i: 'target-selector',     x: 1, y: 0, w: 1, h: 1, static: true },
   { i: 'chart-mode-selector', x: 2, y: 0, w: 1, h: 1, static: true },
+  { i: 'refresh-widget',      x: 3, y: 0, w: 1, h: 1, static: true },
 ];
 
 export interface IState {

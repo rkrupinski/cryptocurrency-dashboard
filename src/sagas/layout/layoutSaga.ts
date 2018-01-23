@@ -1,4 +1,4 @@
-import { all, takeEvery, select, put } from 'redux-saga/effects';
+import { takeEvery, select, put } from 'redux-saga/effects';
 
 import { ActionTypes, setLayout } from '@src/redux_/layout';
 import { selectTmpLayout } from '@src/redux_/layout/selectors';
@@ -10,7 +10,5 @@ function* syncLayoutSaga() {
 }
 
 export default function* layoutSaga() {
-  yield all([
-    takeEvery(ActionTypes.SYNC_LAYOUT, syncLayoutSaga),
-  ]);
+  yield takeEvery(ActionTypes.SYNC_LAYOUT, syncLayoutSaga);
 }

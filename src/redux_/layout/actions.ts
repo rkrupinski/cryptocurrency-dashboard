@@ -21,6 +21,6 @@ export interface ISetTmpLayoutAction {
 }
 
 export type Actions =
-  | ISyncLayoutAction
-  | ISetLayoutAction
-  | ISetTmpLayoutAction;
+    | ISyncLayoutAction
+    | ISetLayoutAction
+    | ISetTmpLayoutAction;
