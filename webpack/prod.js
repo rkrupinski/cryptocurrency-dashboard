@@ -9,7 +9,7 @@ module.exports = {
     path: resolve(__dirname, '..', 'build'),
     filename: '[chunkhash].[name].js',
     chunkFilename: '[chunkhash].[name].js',
-    publicPath: '/',
+    publicPath: '.',
   },
 
    plugins: [
