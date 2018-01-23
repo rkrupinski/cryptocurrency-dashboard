@@ -19,7 +19,7 @@ export const PriceChart: SFC<IPriceChartProps> = ({ data }) => (
         type={'monotone'}
         dataKey={'price'}
         dot={false}
-        animationDuration={500}
+        animationDuration={300}
       />
     </LineChart>
   </ResponsiveContainer>
