@@ -2,6 +2,8 @@
 
 A customizable dashboard built on top of [CryptoCompare API](https://www.cryptocompare.com/api/).
 
+![Cryptocurrency dashboard](assets/thumb.png)
+
 ### Features:
 
 * draggable widgets ([react-grid-layout](https://github.com/STRML/react-grid-layout))

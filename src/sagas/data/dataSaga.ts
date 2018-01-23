@@ -2,6 +2,10 @@ import { all, takeEvery, put, call, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
 import {
+  Actions as RefreshActions,
+  ActionTypes as RefreshActionTypes,
+} from '@src/redux_/refresh';
+import {
   Currency,
   Actions as CurrenciesActions,
   ActionTypes as CurrenciesActionTypes,
@@ -17,6 +21,7 @@ import { fetchPrices, removePrices } from '@src/redux_/prices';
 import { syncLayout } from '@src/redux_/layout';
 
 type Triggers =
+    | RefreshActions
     | CurrenciesActions
     | ChartsActions;
 
@@ -24,6 +29,7 @@ function* fetchDataSaga(action: Triggers) {
   switch (action.type) {
     case CurrenciesActionTypes.SET_CURRENCIES:
     case CurrenciesActionTypes.TOGGLE_TARGET:
+    case RefreshActionTypes.FORCE_REFRESH:
       {
         const selected: Currency[] = yield select(selectValidCurrencies);
 
@@ -72,5 +78,6 @@ export default function* dataSaga() {
     CurrenciesActionTypes.CURRENCY_SELECTED,
     CurrenciesActionTypes.CURRENCY_DESELECTED,
     ChartsActionTypes.TOGGLE_CHART_MODE,
+    RefreshActionTypes.FORCE_REFRESH,
   ], fetchDataSaga);
 }
