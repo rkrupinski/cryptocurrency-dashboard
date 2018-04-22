@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
@@ -15,7 +15,7 @@ export interface IToolbarProps {
   forceRefresh: () => IForceRefreshAction;
 }
 
-export class ToolbarRaw extends PureComponent<
+export class ToolbarRaw extends Component<
   IToolbarProps & WithStyles<ClassNames>
 > {
   public render() {

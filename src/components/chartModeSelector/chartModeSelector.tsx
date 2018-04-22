@@ -1,4 +1,4 @@
-import React, { PureComponent, ChangeEvent } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 import Select from 'material-ui/Select';
 import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
@@ -13,7 +13,7 @@ export interface IChartModeSelectorProps {
   toggleChartMode: (mode: ChartMode) => IToggleChartModeAction;
 }
 
-export class ChartModeSelector extends PureComponent<IChartModeSelectorProps> {
+export class ChartModeSelector extends Component<IChartModeSelectorProps> {
   public render() {
     const { mode } = this.props;
 

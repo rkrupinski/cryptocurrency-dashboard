@@ -1,4 +1,4 @@
-import React, { PureComponent, ReactNode, ChangeEvent } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 import Autosuggest from 'react-autosuggest';
 import { withStyles, WithStyles } from 'material-ui/styles';
 
@@ -19,7 +19,7 @@ interface ICurrencyPickerState {
   value: string;
 }
 
-export class CurrencyPickerRaw extends PureComponent<
+export class CurrencyPickerRaw extends Component<
   ICurrencyPickerProps & WithStyles<ClassNames>,
   ICurrencyPickerState
 > {
@@ -41,15 +41,10 @@ export class CurrencyPickerRaw extends PureComponent<
       suggestionsList: classes.suggestionsList,
     };
 
-    // ¯\_(ツ)_/¯
-    const changeCallback = this.onChange.bind(this);
-    const fetchCallback = this.onSuggestionsFetch.bind(this);
-    const clearCallback = this.onSuggestionsClear.bind(this);
-
     const inputProps = {
       classes: {},
       label: 'Currency',
-      onChange: changeCallback,
+      onChange: this.onChange,
       placeholder: 'Search by name',
       value: this.state.value,
     };
@@ -61,8 +56,8 @@ export class CurrencyPickerRaw extends PureComponent<
           renderInputComponent={renderInput}
           renderSuggestionsContainer={renderSuggestionsContainer}
           renderSuggestion={renderSuggestion}
-          onSuggestionsFetchRequested={fetchCallback}
-          onSuggestionsClearRequested={clearCallback}
+          onSuggestionsFetchRequested={this.onSuggestionsFetch}
+          onSuggestionsClearRequested={this.onSuggestionsClear}
           onSuggestionSelected={this.onSuggestionSelected}
           getSuggestionValue={this.getSuggestionValue}
           suggestions={this.state.suggestions}
@@ -72,14 +67,14 @@ export class CurrencyPickerRaw extends PureComponent<
     );
   }
 
-  private onSuggestionsFetch({ value }: { value: string }) {
+  private onSuggestionsFetch = ({ value }: { value: string }) => {
     this.setState((prevState) => ({
       ...prevState,
       suggestions: this.getSuggestions(value),
     }));
   }
 
-  private onSuggestionsClear() {
+  private onSuggestionsClear = () => {
     this.setState((prevState) => ({
       ...prevState,
       suggestions: [],
@@ -100,13 +95,12 @@ export class CurrencyPickerRaw extends PureComponent<
     selectCurrency(currency);
   }
 
-  private onChange(
-    e: ChangeEvent<HTMLInputElement>,
-    { newValue }: { newValue: string },
-  ) {
+  private onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.persist();
+
     this.setState((prevState) => ({
       ...prevState,
-      value: newValue,
+      value: e.target.value,
     }));
   }
 

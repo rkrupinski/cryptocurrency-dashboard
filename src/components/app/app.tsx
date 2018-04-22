@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { Fragment, Component } from 'react';
 import ReactGridLayout, { WidthProvider, Layout } from 'react-grid-layout';
 import { withStyles, WithStyles } from 'material-ui/styles';
 
@@ -26,7 +26,7 @@ interface IAppProps {
 
 const GridLayout = WidthProvider(ReactGridLayout);
 
-export class AppRaw extends PureComponent<
+export class AppRaw extends Component<
   IAppProps & WithStyles<ClassNames>,
   {}
 > {

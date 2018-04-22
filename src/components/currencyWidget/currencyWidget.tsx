@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
@@ -26,7 +26,7 @@ export interface ICurrencyWidgetProps {
   target: Target;
 }
 
-export class CurrencyWidgetRaw extends PureComponent<
+export class CurrencyWidgetRaw extends Component<
   ICurrencyWidgetProps & WithStyles<ClassNames>,
   {}
 > {

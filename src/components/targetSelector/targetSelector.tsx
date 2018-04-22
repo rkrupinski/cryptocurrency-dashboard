@@ -1,4 +1,4 @@
-import React, { PureComponent, ChangeEvent } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import { withStyles, WithStyles } from 'material-ui/styles';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
@@ -13,7 +13,7 @@ export interface ITargetSelectorProps {
   toggleTarget: (target: Target) => IToggleTargetAction;
 }
 
-export class TargetSelectorRaw extends PureComponent<
+export class TargetSelectorRaw extends Component<
   ITargetSelectorProps & WithStyles<ClassNames>
 > {
   constructor(props: ITargetSelectorProps & WithStyles<ClassNames>) {

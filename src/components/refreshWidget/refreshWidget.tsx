@@ -1,4 +1,4 @@
-import React, { PureComponent, ChangeEvent } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 import Select from 'material-ui/Select';
 import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
@@ -13,7 +13,7 @@ export interface IRefreshWidgetProps {
   setRefreshRate: (rate: RefreshRate) => ISetRefreshRateAction;
 }
 
-export class RefreshWidget extends PureComponent<IRefreshWidgetProps> {
+export class RefreshWidget extends Component<IRefreshWidgetProps> {
   public render() {
     const { refreshRate } = this.props;
 
