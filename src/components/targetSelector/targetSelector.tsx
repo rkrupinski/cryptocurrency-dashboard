@@ -8,7 +8,6 @@ import { styles, ClassNames } from './styles';
 import { Container } from '@src/components/container';
 
 export interface ITargetSelectorProps {
-  loading: boolean;
   target: Target;
   toggleTarget: (target: Target) => IToggleTargetAction;
 }

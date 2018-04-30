@@ -1,2 +1,2 @@
-export * from './toolbar';
+export * from './loader';
 export * from './connected';

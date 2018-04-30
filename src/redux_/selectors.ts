@@ -27,3 +27,8 @@ export const selectRefresh = createSelector(
   ({ refresh }: IRootState) => refresh,
   identity,
 );
+
+export const selectWallet = createSelector(
+  ({ wallet }: IRootState) => wallet,
+  identity,
+);

@@ -9,12 +9,13 @@ import 'animate.css';
 import { styles, ClassNames } from './styles';
 import { ISetTmpLayoutAction, ISyncLayoutAction } from '@src/redux_/layout';
 import { Currency, IFetchCurrenciesAction } from '@src/redux_/currencies';
+import { LoaderConnected as Loader } from '@src/components/loader';
 import { CurrencyPickerConnected as CurrencyPicker } from '@src/components/currencyPicker';
 import { TargetSelectorConnected as TargetSelector } from '@src/components/targetSelector';
 import { ChartModeSelectorConnected as ChartModeSelector } from '@src/components/chartModeSelector';
 import { RefreshWidgetConnected as RefreshWidget } from '@src/components/refreshWidget';
 import { CurrencyWidgetConnected as CurrencyWidget } from '@src/components/currencyWidget';
-import { ToolbarConnected as Toolbar } from '@src/components/toolbar';
+import { FooterConnected as Footer } from '@src/components/footer';
 
 interface IAppProps {
   fetchCurrencies: () => IFetchCurrenciesAction;
@@ -67,20 +68,20 @@ export class AppRaw extends Component<
           rowHeight={90}
         >
           <div key={'currency-picker'} style={{ zIndex: 2 }}>
-            <CurrencyPicker />
+            <Loader component={CurrencyPicker} />
           </div>
           <div key={'target-selector'}>
-            <TargetSelector />
+            <Loader component={TargetSelector} />
           </div>
           <div key={'chart-mode-selector'}>
-            <ChartModeSelector />
+            <Loader component={ChartModeSelector} />
           </div>
           <div key={'refresh-widget'}>
-            <RefreshWidget />
+            <Loader component={RefreshWidget} />
           </div>
           {renderCurrencies}
         </GridLayout>
-        <Toolbar />
+        <Footer />
       </Fragment>
     );
   }

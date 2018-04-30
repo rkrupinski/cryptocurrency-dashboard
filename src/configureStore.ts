@@ -32,6 +32,7 @@ const configureStore = (initialState?: IRootState) => {
       'layout.current',
       'charts.mode',
       'refresh.rate',
+      'wallet.balanceByCurrency',
     ]),
   )(adapter(window.localStorage));
 

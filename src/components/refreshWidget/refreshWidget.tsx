@@ -8,7 +8,6 @@ import { RefreshRate, ISetRefreshRateAction } from '@src/redux_/refresh';
 import { Container } from '@src/components/container';
 
 export interface IRefreshWidgetProps {
-  loading: boolean;
   refreshRate: RefreshRate;
   setRefreshRate: (rate: RefreshRate) => ISetRefreshRateAction;
 }

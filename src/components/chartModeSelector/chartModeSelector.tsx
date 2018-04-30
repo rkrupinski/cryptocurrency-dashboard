@@ -8,7 +8,6 @@ import { ChartMode, IToggleChartModeAction } from '@src/redux_/charts';
 import { Container } from '@src/components/container';
 
 export interface IChartModeSelectorProps {
-  loading: boolean;
   mode: ChartMode;
   toggleChartMode: (mode: ChartMode) => IToggleChartModeAction;
 }

@@ -2,18 +2,12 @@ import { connect } from 'react-redux';
 
 import { IRootState } from '@src/redux_';
 import { selectRefreshRate } from '@src/redux_/refresh/selectors';
-import { forceRefresh } from '@src/redux_/refresh';
-import { Toolbar } from '.';
+import { Footer } from '.';
 
 const mapStateToProps = (state: IRootState) => ({
   refreshRate: selectRefreshRate(state),
 });
 
-const mapDispatchToProps = {
-  forceRefresh,
-};
-
-export const ToolbarConnected = connect(
+export const FooterConnected = connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(Toolbar);
+)(Footer);

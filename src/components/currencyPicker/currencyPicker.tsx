@@ -9,7 +9,6 @@ import { Container } from '@src/components/container';
 
 export interface ICurrencyPickerProps {
   currencies: Currency[];
-  loading: boolean;
   maxSuggestions: number;
   selectCurrency: (currency: Currency) => ICurrencySelectedAction;
 }

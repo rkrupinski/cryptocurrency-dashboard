@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, MouseEvent } from 'react';
 import Typography from 'material-ui/Typography';
+import DeleteIcon from 'material-ui-icons/DeleteForever';
+import WalletIcon from 'material-ui-icons/AccountBalanceWallet';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
 import IconButton from 'material-ui/IconButton';
-import DeleteIcon from 'material-ui-icons/Delete';
+import Menu, { MenuItem } from 'material-ui/Menu';
+import { ListItemIcon, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Grid from 'material-ui/Grid';
 import { withStyles, WithStyles } from 'material-ui/styles';
@@ -26,20 +30,30 @@ export interface ICurrencyWidgetProps {
   target: Target;
 }
 
+interface ICurrencyWidgetState {
+  anchorEl?: HTMLButtonElement;
+}
+
 export class CurrencyWidgetRaw extends Component<
   ICurrencyWidgetProps & WithStyles<ClassNames>,
-  {}
+  ICurrencyWidgetState
 > {
+  public state = {
+    anchorEl: undefined,
+  };
+
   public render() {
     const {
       classes,
-      currency: { name },
+      currency: { name, id: currencyId },
       price,
       priceLoading,
       chartData,
       chartDataLoading,
       target,
     } = this.props;
+
+    const { anchorEl } = this.state;
 
     const shouldRenderChart = chartData && !!chartData.length && !chartDataLoading;
 
@@ -49,7 +63,7 @@ export class CurrencyWidgetRaw extends Component<
         className={classes.price}
         component={'span'}
       >
-          {f}
+        {f}
       </Typography>
     );
 
@@ -83,12 +97,38 @@ export class CurrencyWidgetRaw extends Component<
     return (
       <Container>
         <IconButton
-          className={classes.deselectBtn}
-          aria-label={'Deselect currency'}
-          onClick={this.onDeselect}
+          aria-label={'Options'}
+          aria-owns={anchorEl ? `options-${currencyId}` : null}
+          aria-haspopup={'true'}
+          className={classes.options}
+          onClick={this.showOptions}
         >
-          <DeleteIcon />
+          <MoreVertIcon />
         </IconButton>
+
+        <Menu
+          id={`options-${currencyId}`}
+          anchorEl={anchorEl}
+          open={!!anchorEl}
+          onClose={this.hideOptions}
+        >
+          <MenuItem className={classes.placeholder} />
+          <MenuItem onClick={this.onSetBalance}>
+            <ListItemIcon className={classes.menuIcon}>
+              <WalletIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary={'Edit balance'}
+              secondary={`Current: ${123.33}`}
+            />
+          </MenuItem>
+          <MenuItem onClick={this.onDeselect}>
+            <ListItemIcon className={classes.menuIcon}>
+              <DeleteIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Remove'} />
+          </MenuItem>
+        </Menu>
 
         <Typography
           className={`handle ${classes.currencyName}`}
@@ -129,7 +169,27 @@ export class CurrencyWidgetRaw extends Component<
   private onDeselect = () => {
     const { deselectCurrency, currency } = this.props;
 
+    this.hideOptions();
+
     deselectCurrency(currency);
+  }
+
+  private onSetBalance = () => {
+    this.hideOptions();
+  }
+
+  private showOptions = ({
+    currentTarget,
+  }: MouseEvent<HTMLButtonElement>) => {
+    this.setState({
+      anchorEl: currentTarget,
+    });
+  }
+
+  private hideOptions = () => {
+    this.setState({
+      anchorEl: undefined,
+    });
   }
 }
 
