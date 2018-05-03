@@ -1,8 +1,8 @@
-import React, { SFC } from 'react';
+import React, { Fragment, SFC } from 'react';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { IntlProvider } from 'react-intl';
-import 'normalize.css';
+import CssBaseline from 'material-ui/CssBaseline';
 
 import { AppConnected as App } from '@src/components/app';
 
@@ -15,7 +15,10 @@ export const Root: SFC<IRootProps> = ({
 }) => (
   <Provider store={store}>
     <IntlProvider locale={navigator.language}>
-      <App />
+      <Fragment>
+        <CssBaseline />
+        <App />
+      </Fragment>
     </IntlProvider>
   </Provider>
 );

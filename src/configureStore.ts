@@ -7,16 +7,13 @@ import filter from 'redux-localstorage-filter';
 import { rootReducer, IRootState, Reducer } from '@src/redux_';
 import { rootSaga } from '@src/sagas';
 
-// const composeEnhancers = (
-  //   process.env.NODE_ENV !== 'production' &&
-  //       window &&
-  //       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-  // ) || compose;
+const composeEnhancers = (
+    process.env.NODE_ENV !== 'production' &&
+        window &&
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  ) || compose;
 
-// https://github.com/zalmoxisus/redux-devtools-extension/issues/430
-const composeEnhancers = compose;
-
-const STORAGE_VERSION = 'v1';
+const STORAGE_VERSION = 'v2';
 
 const configureStore = (initialState?: IRootState) => {
   const sagaMiddleware = createSagaMiddleware();

@@ -12,7 +12,7 @@ export type ClassNames =
 const ellipsis = {
   overflow: 'hidden' as 'hidden',
   textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
+  whiteSpace: 'nowrap' as 'nowrap',
 };
 
 export const styles = (theme: Theme) => ({

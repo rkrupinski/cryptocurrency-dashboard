@@ -21,7 +21,7 @@ export const RefreshButton: SFC<IRefreshButtonProps> = ({
       aria-label={'Refresh'}
       color={'primary'}
       onClick={forceRefresh}
-      fab={true}
+      variant={'fab'}
     >
       <RefreshIcon />
     </Button>

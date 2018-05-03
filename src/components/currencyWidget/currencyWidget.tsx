@@ -59,7 +59,7 @@ export class CurrencyWidgetRaw extends Component<
 
     const renderFormattedPrice = (f: string) => (
       <Typography
-        type={'display1'}
+        variant={'display1'}
         className={classes.price}
         component={'span'}
       >
@@ -132,7 +132,7 @@ export class CurrencyWidgetRaw extends Component<
 
         <Typography
           className={`handle ${classes.currencyName}`}
-          type={'title'}
+          variant={'title'}
           gutterBottom={true}
         >
           {name}

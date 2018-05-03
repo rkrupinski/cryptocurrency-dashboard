@@ -2,6 +2,7 @@ import { Balance } from '.';
 
 export enum ActionTypes {
   SET_BALANCE = 'SET_BALANCE',
+  RESET_BALANCE = 'RESET_BALANCE',
 }
 
 export interface ISetBalanceAction {
@@ -9,5 +10,11 @@ export interface ISetBalanceAction {
   type: ActionTypes.SET_BALANCE;
 }
 
+export interface IResetBalanceAction {
+  payload: { symbol: string };
+  type: ActionTypes.RESET_BALANCE;
+}
+
 export type Actions =
-    | ISetBalanceAction;
+    | ISetBalanceAction
+    | IResetBalanceAction;

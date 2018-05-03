@@ -8,33 +8,38 @@ import { IPrices } from '@src/redux_/prices';
 
 interface IWalletProps {
   balance: TotalBalance;
-  target: Target;
   prices: IPrices;
+  target: Target;
+  selectedSymbols: string[];
 }
 
 const renderBalance = (f: string) => (
   <Typography
     component={'span'}
-    type={'subheading'}
+    variant={'subheading'}
   >
     Balance: {f}
   </Typography>
 );
 
-export const Wallet: SFC<IWalletProps> = ({ balance, prices, target }) => {
-  let total;
+export const Wallet: SFC<IWalletProps> = ({
+  balance,
+  prices,
+  target,
+  selectedSymbols,
+}) => {
+  const totalBalance: TotalBalance = selectedSymbols
+      .reduce((acc, sym) => ({
+        ...acc,
+        [sym]: balance[sym] || 0,
+      }), {});
 
-  try {
-    total = Object.keys(balance)
-        .reduce((acc, sym) => acc + balance[sym] * prices[sym][target], 0);
-  } catch (err) {
-    // (☞ﾟ∀ﾟ)☞
-    total = 0;
-  }
+  const totalAmount = Object.entries(totalBalance)
+      .reduce((acc, [sym, bal]) => acc + prices[sym][target] * bal, 0);
 
   return (
     <FormattedNumber
-      value={total}
+      value={totalAmount}
       style={'currency'}
       currency={target}
       maximumFractionDigits={2}

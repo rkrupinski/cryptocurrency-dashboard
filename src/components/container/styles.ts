@@ -5,7 +5,7 @@ export type ClassNames =
 
 export const styles = (theme: Theme) => ({
   container: {
-    boxSizing: 'border-box',
+    boxSizing: 'border-box' as 'border-box',
     height: '100%',
     padding: theme.spacing.unit * 2,
   },

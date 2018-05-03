@@ -10,6 +10,6 @@ export const styles = (theme: Theme) => ({
   },
   loading: {
     opacity: .5,
-    pointerEvents: 'none',
+    pointerEvents: 'none' as 'none',
   },
 });

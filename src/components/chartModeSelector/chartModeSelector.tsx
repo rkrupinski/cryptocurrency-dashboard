@@ -34,7 +34,7 @@ export class ChartModeSelector extends Component<IChartModeSelectorProps> {
     );
   }
 
-  private handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  private handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { toggleChartMode } = this.props;
 
     toggleChartMode(e.target.value as ChartMode);

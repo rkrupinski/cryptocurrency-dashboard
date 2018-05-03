@@ -8,12 +8,13 @@ import { styles, ClassNames } from './styles';
 import { RefreshRate } from '@src/redux_/refresh';
 
 export interface IFooterProps {
+  loading: boolean;
   refreshRate: RefreshRate;
 }
 
 export const FooterRaw: SFC<
 IFooterProps & WithStyles<ClassNames>
-> = ({ classes, refreshRate }) => (
+> = ({ classes, refreshRate, loading }) => (
   <footer className={classes.footer}>
     <Grid
       alignItems={'flex-end'}
@@ -22,7 +23,7 @@ IFooterProps & WithStyles<ClassNames>
       spacing={0}
     >
       <Grid item={true}>
-        <Wallet />
+        {!loading && <Wallet />}
       </Grid>
       <Grid item={true}>
         {refreshRate === 'manual' && <RefreshButton />}

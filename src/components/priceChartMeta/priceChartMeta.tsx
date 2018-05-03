@@ -52,7 +52,7 @@ export const PriceChartMetaRaw: SFC<
         <Typography
           className={className}
           component={'span'}
-          type={'body2'}
+          variant={'body2'}
         >
           {`${change.toFixed(DECIMAL_PLACES)}%`}
         </Typography>

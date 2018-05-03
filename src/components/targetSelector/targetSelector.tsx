@@ -41,12 +41,12 @@ export class TargetSelectorRaw extends Component<
             onChange={this.handleChange}
           >
             <FormControlLabel
-              control={<Radio />}
+              control={<Radio color={'primary'} />}
               label={'USD'}
               value={'USD'}
             />
             <FormControlLabel
-              control={<Radio />}
+              control={<Radio color={'primary'} />}
               label={'EUR'}
               value={'EUR'}
             />

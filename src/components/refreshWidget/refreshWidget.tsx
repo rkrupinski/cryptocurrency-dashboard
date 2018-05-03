@@ -34,7 +34,7 @@ export class RefreshWidget extends Component<IRefreshWidgetProps> {
     );
   }
 
-  private handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  private handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { setRefreshRate } = this.props;
 
     setRefreshRate(e.target.value as RefreshRate);
