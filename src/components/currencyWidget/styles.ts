@@ -4,9 +4,7 @@ import { grey } from 'material-ui/colors';
 export type ClassNames =
   | 'currencyName'
   | 'divider'
-  | 'menuIcon'
-  | 'options'
-  | 'placeholder'
+  | 'menu'
   | 'price';
 
 const ellipsis = {
@@ -28,16 +26,10 @@ export const styles = (theme: Theme) => ({
   divider: {
     margin: '10px 0',
   },
-  menuIcon: {
-    marginRight: 0,
-  },
-  options: {
+  menu: {
     position: 'absolute' as 'absolute',
-    right: '3px',
-    top: '3px',
-  },
-  placeholder: {
-    display: 'none',
+    right: 3,
+    top: 3,
   },
   price: {
     ...ellipsis,

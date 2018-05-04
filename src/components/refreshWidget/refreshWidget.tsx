@@ -19,7 +19,7 @@ export class RefreshWidget extends Component<IRefreshWidgetProps> {
     return (
       <Container>
         <FormControl fullWidth={true}>
-          <InputLabel htmlFor={'refresh-rate'}>Refresh</InputLabel>
+          <InputLabel htmlFor={'refresh-rate'}>Refresh data</InputLabel>
           <Select
             value={refreshRate}
             onChange={this.handleChange}

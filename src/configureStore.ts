@@ -13,7 +13,7 @@ const composeEnhancers = (
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   ) || compose;
 
-const STORAGE_VERSION = 'v2';
+const STORAGE_VERSION = 'v1';
 
 const configureStore = (initialState?: IRootState) => {
   const sagaMiddleware = createSagaMiddleware();
