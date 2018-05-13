@@ -3,7 +3,6 @@ import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import Grid from 'material-ui/Grid';
 import { withStyles, WithStyles } from 'material-ui/styles';
-import { FormattedNumber } from 'react-intl';
 
 import { Currency, Target } from '@src/redux_/currencies';
 import { Price } from '@src/redux_/prices';
@@ -13,6 +12,7 @@ import { Spinner } from '@src/components/spinner';
 import { Container } from '@src/components/container';
 import { PriceChart } from '@src/components/priceChart';
 import { PriceChartMeta } from '@src/components/priceChartMeta';
+import { MoneyConnected as Money } from '@src/components/money';
 import { styles, ClassNames } from './styles';
 
 export interface ICurrencyWidgetProps {
@@ -48,14 +48,9 @@ export const CurrencyWidgetRaw: SFC<
   );
 
   const renderPrice = price && !priceLoading && (
-    <FormattedNumber
-      value={price[target]}
-      style={'currency'}
-      currency={target}
-      maximumFractionDigits={6}
-    >
+    <Money amount={price[target]} maxDecimals={6}>
       {renderFormattedPrice}
-    </FormattedNumber>
+    </Money>
   );
 
   const renderPriceSpinner = priceLoading && (
@@ -94,22 +89,12 @@ export const CurrencyWidgetRaw: SFC<
 
       <Divider className={classes.divider} />
 
-      <Grid
-        container={true}
-        alignItems={'center'}
-        spacing={0}
-      >
-        <Grid
-          item={true}
-          xs={9}
-        >
+      <Grid container={true} alignItems={'center'} spacing={0}>
+        <Grid item={true} xs={9}>
           {renderChart}
           {renderChartSpinner}
         </Grid>
-        <Grid
-          item={true}
-          xs={3}
-        >
+        <Grid item={true} xs={3}>
           {renderChartMeta}
         </Grid>
       </Grid>

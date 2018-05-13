@@ -1,10 +1,10 @@
-import React, { SFC } from 'react';
+import React, { SFC, Fragment } from 'react';
 import Typography from 'material-ui/Typography';
-import { FormattedNumber } from 'react-intl';
 
 import { TotalBalance } from '@src/redux_/wallet';
 import { Target } from '@src/redux_/currencies';
 import { IPrices } from '@src/redux_/prices';
+import { MoneyConnected as Money } from '@src/components/money';
 
 interface IWalletProps {
   balance: TotalBalance;
@@ -14,10 +14,7 @@ interface IWalletProps {
 }
 
 const renderBalance = (f: string) => (
-  <Typography
-    component={'span'}
-    variant={'subheading'}
-  >
+  <Typography component={'span'} variant={'subheading'}>
     Balance: {f}
   </Typography>
 );
@@ -38,13 +35,12 @@ export const Wallet: SFC<IWalletProps> = ({
       .reduce((acc, [sym, bal]) => acc + prices[sym][target] * bal, 0);
 
   return (
-    <FormattedNumber
-      value={totalAmount}
-      style={'currency'}
-      currency={target}
-      maximumFractionDigits={2}
-    >
-      {renderBalance}
-    </FormattedNumber>
+    <Fragment>
+      <Money amount={totalAmount}>
+        {renderBalance}
+      </Money>
+
+      (i)
+    </Fragment>
   );
 };
