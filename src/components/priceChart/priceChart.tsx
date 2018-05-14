@@ -21,6 +21,8 @@ export const PriceChartRaw: SFC<
   <ResponsiveContainer height={70}>
     <LineChart data={data}>
       <Tooltip
+        animationDuration={200}
+        animationEasing={'ease-out'}
         content={<PriceChartTooltip />}
         cursor={false}
       />

@@ -28,8 +28,8 @@ export const styles = (theme: Theme) => ({
   },
   menu: {
     position: 'absolute' as 'absolute',
-    right: 3,
-    top: 3,
+    right: 8,
+    top: 8,
   },
   price: {
     ...ellipsis,

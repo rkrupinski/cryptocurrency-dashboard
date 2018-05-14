@@ -1,21 +1,19 @@
 import { connect } from 'react-redux';
 
-import { Wallet } from '.';
 import { IRootState } from '@src/redux_';
-import { selectData } from '@src/redux_/prices/selectors';
 import {
-  selectTarget,
+  selectValidCurrencies,
   selectSelectedCurrenciesSymbols,
- } from '@src/redux_/currencies/selectors';
+} from '@src/redux_/currencies/selectors';
 import { selectBalanceByCurrency } from '@src/redux_/wallet/selectors';
+import { WalletDetails } from '.';
 
 const mapStateToProps = (state: IRootState) => ({
+  allCurrencies: selectValidCurrencies(state),
   balance: selectBalanceByCurrency(state),
-  prices: selectData(state),
   selectedSymbols: selectSelectedCurrenciesSymbols(state),
-  target: selectTarget(state),
 });
 
-export const WalletConnected = connect(
+export const WalletDetailsConnected = connect(
   mapStateToProps,
-)(Wallet);
+)(WalletDetails);

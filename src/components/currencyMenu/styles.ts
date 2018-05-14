@@ -6,7 +6,10 @@ export type ClassNames =
   | 'placeholder';
 
 export const styles = (theme: Theme) => ({
-  button: {},
+  button: {
+    height: 40,
+    width: 40,
+  },
   menuIcon: {
     marginRight: 0,
   },
