@@ -21,5 +21,5 @@ export function* rootSaga() {
     walletSaga,
   ];
 
-  yield all(sagas.filter(Boolean).map((saga) => saga && saga()));
+  yield all(sagas.filter(Boolean).map((saga) => saga!()));
 }

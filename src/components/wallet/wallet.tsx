@@ -33,7 +33,11 @@ export const WalletRaw: SFC<
   classes,
 }) => {
   const totalAmount = Object.entries(balance)
-      .reduce((acc, [sym, bal]) => acc + prices[sym][target] * bal, 0);
+      .reduce((acc, [sym, bal]) => {
+        const curr = prices[sym] ? prices[sym][target] * bal : 0;
+
+        return acc + curr;
+      }, 0);
 
   return (
     <Grid container={true}>

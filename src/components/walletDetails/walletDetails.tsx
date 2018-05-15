@@ -60,6 +60,7 @@ export const WalletDetailsRaw: SFC<
   return (
     <span className={classes.container}>
       <Tooltip
+        className={classes.container}
         title={renderTitle}
         placement={'top'}
       >

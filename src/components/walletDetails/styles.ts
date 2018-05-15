@@ -11,6 +11,7 @@ export const styles = (theme: Theme) => ({
   icon: {
     color: theme.palette.text.hint,
     cursor: 'help',
+    verticalAlign: 'middle',
   },
   list: {
     listStyle: 'none',
