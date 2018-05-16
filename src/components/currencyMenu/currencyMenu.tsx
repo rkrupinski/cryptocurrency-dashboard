@@ -40,7 +40,7 @@ export class CurrencyMenuRaw extends Component<
         <IconButton
           className={classes.button}
           aria-label={'Options'}
-          aria-owns={anchorEl ? `options-${currencyId}` : null}
+          aria-owns={anchorEl ? `options-${currencyId}` : undefined}
           aria-haspopup={'true'}
           onClick={this.showOptions}
         >

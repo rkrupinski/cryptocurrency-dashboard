@@ -6,9 +6,12 @@ import { Provider } from 'react-redux';
 import configureStore from '@src/configureStore';
 import { rootReducer } from '@src/redux_';
 import { Root, IRootProps } from '@src/components/root';
+import { load as loadFonts } from '@src/webfonts';
 
 const store = configureStore();
 const appRoot = document.querySelector('#app')!;
+
+loadFonts(); // (☞ﾟ∀ﾟ)☞
 
 render(Root);
 

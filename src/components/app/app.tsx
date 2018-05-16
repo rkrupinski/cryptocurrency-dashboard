@@ -15,6 +15,8 @@ import { TargetSelectorConnected as TargetSelector } from '@src/components/targe
 import { ChartModeSelectorConnected as ChartModeSelector } from '@src/components/chartModeSelector';
 import { RefreshWidgetConnected as RefreshWidget } from '@src/components/refreshWidget';
 import { CurrencyWidgetConnected as CurrencyWidget } from '@src/components/currencyWidget';
+import { BalanceModal } from '@src/components/balanceModal';
+import { BalanceProvider } from '@src/components/balanceContext';
 import { FooterConnected as Footer } from '@src/components/footer';
 
 interface IAppProps {
@@ -57,30 +59,33 @@ export class AppRaw extends Component<
 
     return (
       <Fragment>
-        <GridLayout
-          className={`layout ${classes.grid}`}
-          cols={4}
-          draggableHandle={'.handle'}
-          isResizable={false}
-          layout={layout}
-          onLayoutChange={this.onLayoutChange}
-          onDragStop={this.onDragStop}
-          rowHeight={90}
-        >
-          <div key={'currency-picker'} style={{ zIndex: 2 }}>
-            <Loader component={CurrencyPicker} />
-          </div>
-          <div key={'target-selector'}>
-            <Loader component={TargetSelector} />
-          </div>
-          <div key={'chart-mode-selector'}>
-            <Loader component={ChartModeSelector} />
-          </div>
-          <div key={'refresh-widget'}>
-            <Loader component={RefreshWidget} />
-          </div>
-          {renderCurrencies}
-        </GridLayout>
+        <BalanceProvider>
+          <GridLayout
+            className={`layout ${classes.grid}`}
+            cols={4}
+            draggableHandle={'.handle'}
+            isResizable={false}
+            layout={layout}
+            onLayoutChange={this.onLayoutChange}
+            onDragStop={this.onDragStop}
+            rowHeight={90}
+          >
+            <div key={'currency-picker'} style={{ zIndex: 2 }}>
+              <Loader component={CurrencyPicker} />
+            </div>
+            <div key={'target-selector'}>
+              <Loader component={TargetSelector} />
+            </div>
+            <div key={'chart-mode-selector'}>
+              <Loader component={ChartModeSelector} />
+            </div>
+            <div key={'refresh-widget'}>
+              <Loader component={RefreshWidget} />
+            </div>
+            {renderCurrencies}
+          </GridLayout>
+          <BalanceModal />
+        </BalanceProvider>
         <Footer />
       </Fragment>
     );
