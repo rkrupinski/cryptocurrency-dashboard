@@ -13,6 +13,7 @@ import { Container } from '@src/components/container';
 import { PriceChart } from '@src/components/priceChart';
 import { PriceChartMeta } from '@src/components/priceChartMeta';
 import { MoneyConnected as Money } from '@src/components/money';
+import { BalanceConsumer, IBalanceContext } from '@src/components/balanceContext';
 import { styles, ClassNames } from './styles';
 
 export interface ICurrencyWidgetProps {
@@ -36,6 +37,14 @@ export const CurrencyWidgetRaw: SFC<
   target,
 }) => {
   const shouldRenderChart = chartData && !!chartData.length && !chartDataLoading;
+
+  const renderMenu = ({ onEditingBalance }: IBalanceContext) => (
+    <CurrencyMenu
+      classes={{ button: classes.menu }}
+      currency={currency}
+      onEditingBalance={onEditingBalance}
+    />
+  );
 
   const renderFormattedPrice = (f: string) => (
     <Typography
@@ -71,10 +80,9 @@ export const CurrencyWidgetRaw: SFC<
 
   return (
     <Container>
-      <CurrencyMenu
-        classes={{ button: classes.menu }}
-        currency={currency}
-      />
+      <BalanceConsumer>
+        {renderMenu}
+      </BalanceConsumer>
 
       <Typography
         className={`handle ${classes.currencyName}`}

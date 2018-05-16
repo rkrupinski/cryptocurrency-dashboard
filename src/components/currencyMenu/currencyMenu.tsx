@@ -8,11 +8,14 @@ import { ListItemIcon, ListItemText } from 'material-ui/List';
 import { withStyles, WithStyles } from 'material-ui/styles';
 
 import { Currency, ICurrencyDeselectedAction } from '@src/redux_/currencies';
+import { TotalBalance } from '@src/redux_/wallet';
 import { styles, ClassNames } from './styles';
 
 interface ICurrencyMenuProps {
+  balance: TotalBalance;
   currency: Currency;
   deselectCurrency: (currency: Currency) => ICurrencyDeselectedAction;
+  onEditingBalance: (currency: Currency) => void;
 }
 
 interface ICurrencyMenuState {
@@ -29,8 +32,9 @@ export class CurrencyMenuRaw extends Component<
 
   public render() {
     const {
+      balance,
       classes,
-      currency: { id: currencyId },
+      currency: { id: currencyId, symbol },
     } = this.props;
 
     const { anchorEl } = this.state;
@@ -54,13 +58,13 @@ export class CurrencyMenuRaw extends Component<
           onClose={this.hideOptions}
         >
           <MenuItem className={classes.placeholder} />
-          <MenuItem onClick={this.onSetBalance}>
+          <MenuItem onClick={this.onEditBalance}>
             <ListItemIcon className={classes.menuIcon}>
               <WalletIcon />
             </ListItemIcon>
             <ListItemText
               primary={'Edit balance'}
-              secondary={`Current: ${123.33}`}
+              secondary={`Current: ${balance[symbol] || 0}`}
             />
           </MenuItem>
           <MenuItem onClick={this.onDeselect}>
@@ -82,7 +86,11 @@ export class CurrencyMenuRaw extends Component<
     deselectCurrency(currency);
   }
 
-  private onSetBalance = () => {
+  private onEditBalance = () => {
+    const { currency, onEditingBalance } = this.props;
+
+    onEditingBalance(currency);
+
     this.hideOptions();
   }
 

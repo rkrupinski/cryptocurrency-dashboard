@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import Slide, { SlideProps } from 'material-ui/transitions/Slide';
 
-import { BalanceConsumer, IBalanceContext } from '@src/components/balanceContext';
+import {
+  BalanceConsumer,
+  IBalanceContext,
+} from '@src/components/balanceContext';
+import { BalanceForm } from '@src/components/balanceForm';
 
 export const BalanceTransition = (props: SlideProps) => (
   <Slide direction={'up'} {...props} />
@@ -17,13 +21,20 @@ export class BalanceModal extends Component<{}> {
     );
   }
 
-  private renderModal = ({ open }: IBalanceContext) => (
+  private renderModal = ({
+    open,
+    currency,
+    onDoneEditingBalance,
+  }: IBalanceContext) => (
     <Dialog
       open={open}
+      onClose={onDoneEditingBalance}
       TransitionComponent={BalanceTransition}
-      keepMounted={true}
     >
-      <h1>TODO!</h1>
+      <BalanceForm
+        currency={currency}
+        onDoneEditingBalance={onDoneEditingBalance}
+      />
     </Dialog>
   )
 }
