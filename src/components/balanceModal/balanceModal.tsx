@@ -1,40 +1,69 @@
 import React, { Component } from 'react';
-import Dialog from 'material-ui/Dialog';
-import Slide, { SlideProps } from 'material-ui/transitions/Slide';
+import Dialog, {
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from 'material-ui/Dialog';
+import Button from 'material-ui/Button';
+import Zoom, { ZoomProps } from 'material-ui/transitions/Zoom';
+import { FormAction } from 'redux-form';
 
-import {
-  BalanceConsumer,
-  IBalanceContext,
-} from '@src/components/balanceContext';
-import { BalanceForm } from '@src/components/balanceForm';
+import { TotalBalance } from '@src/redux_/wallet';
+import { IBalanceContext } from '@src/components/balanceContext';
+import { BalanceForm, IBalanceFormData } from '@src/components/balanceForm';
 
-export const BalanceTransition = (props: SlideProps) => (
-  <Slide direction={'up'} {...props} />
+export const BalanceTransition = (props: ZoomProps) => (
+  <Zoom {...props} />
 );
 
-export class BalanceModal extends Component<{}> {
+export type BalanceModalProps = {
+  balance: TotalBalance,
+  submit: () => FormAction;
+} & Pick<IBalanceContext, 'open' | 'currency' | 'onDoneEditingBalance'>;
+
+export class BalanceModal extends Component<BalanceModalProps> {
   public render() {
-    return (
-      <BalanceConsumer>
-        {this.renderModal}
-      </BalanceConsumer>
-    );
+    const {
+      balance,
+      currency,
+      onDoneEditingBalance,
+      open,
+      submit,
+    } = this.props;
+
+    return currency ? (
+      <Dialog
+        open={open}
+        onClose={onDoneEditingBalance}
+        TransitionComponent={BalanceTransition}
+        aria-labelledby={'balance-modal-title'}
+      >
+        <DialogTitle id={'balance-modal-title'}>Edit balance</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            How much <strong>{currency.name}</strong> do you hold?
+          </DialogContentText>
+          <BalanceForm
+            currency={currency}
+            onSubmit={this.onSubmit}
+            initialValues={{ balance: balance[currency.symbol] || 0 }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onDoneEditingBalance}>Cancel</Button>
+          <Button color={'primary'} onClick={submit}>Save</Button>
+        </DialogActions>
+      </Dialog>
+    ) : null;
   }
 
-  private renderModal = ({
-    open,
-    currency,
-    onDoneEditingBalance,
-  }: IBalanceContext) => (
-    <Dialog
-      open={open}
-      onClose={onDoneEditingBalance}
-      TransitionComponent={BalanceTransition}
-    >
-      <BalanceForm
-        currency={currency}
-        onDoneEditingBalance={onDoneEditingBalance}
-      />
-    </Dialog>
-  )
+  private onSubmit = ({ balance }: IBalanceFormData) => {
+    const { onDoneEditingBalance } = this.props;
+    /* tslint:disable */
+    console.log('onSubmit', balance);
+    /* tslint:enable */
+
+    onDoneEditingBalance();
+  }
 }

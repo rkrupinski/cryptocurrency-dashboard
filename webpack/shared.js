@@ -28,7 +28,12 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           'react-hot-loader/webpack',
-          'awesome-typescript-loader',
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              useCache: true,
+            },
+          },
         ],
       },
       {

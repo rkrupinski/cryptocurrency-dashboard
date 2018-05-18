@@ -15,8 +15,12 @@ import { TargetSelectorConnected as TargetSelector } from '@src/components/targe
 import { ChartModeSelectorConnected as ChartModeSelector } from '@src/components/chartModeSelector';
 import { RefreshWidgetConnected as RefreshWidget } from '@src/components/refreshWidget';
 import { CurrencyWidgetConnected as CurrencyWidget } from '@src/components/currencyWidget';
-import { BalanceModal } from '@src/components/balanceModal';
-import { BalanceProvider } from '@src/components/balanceContext';
+import { BalanceModalConnected as BalanceModal } from '@src/components/balanceModal';
+import {
+  BalanceProvider,
+  BalanceConsumer,
+  IBalanceContext,
+} from '@src/components/balanceContext';
 import { FooterConnected as Footer } from '@src/components/footer';
 
 interface IAppProps {
@@ -57,6 +61,13 @@ export class AppRaw extends Component<
       );
     });
 
+    const renderBalanceModal = ({
+      onEditingBalance,
+      ...other,
+    }: IBalanceContext) => (
+      <BalanceModal {...other} />
+    );
+
     return (
       <Fragment>
         <BalanceProvider>
@@ -84,7 +95,7 @@ export class AppRaw extends Component<
             </div>
             {renderCurrencies}
           </GridLayout>
-          <BalanceModal />
+          <BalanceConsumer>{renderBalanceModal}</BalanceConsumer>
         </BalanceProvider>
         <Footer />
       </Fragment>

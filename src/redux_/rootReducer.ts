@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 import { reducer as chartsReducer, IState as ChartsState } from './charts';
 import { reducer as currenciesReducer, IState as CurrenciesState } from './currencies';
@@ -11,6 +12,7 @@ import { RootAction } from '.';
 export interface IRootState {
   readonly charts: ChartsState;
   readonly currencies: CurrenciesState;
+  readonly form: any; // (☞ﾟ∀ﾟ)☞
   readonly layout: LayoutState;
   readonly prices: PricesState;
   readonly refresh: RefreshState;
@@ -20,6 +22,7 @@ export interface IRootState {
 export const rootReducer = combineReducers<IRootState, RootAction>({
   charts: chartsReducer,
   currencies: currenciesReducer,
+  form: formReducer,
   layout: layoutReducer,
   prices: pricesReducer,
   refresh: refreshReducer,

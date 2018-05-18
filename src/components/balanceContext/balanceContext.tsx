@@ -1,6 +1,7 @@
 import React, { Component, createContext } from 'react';
 
 import { Currency } from '@src/redux_/currencies';
+import { noop } from '@src/common/utils';
 
 export interface IBalanceContext {
   currency: Currency | null;
@@ -13,8 +14,8 @@ export type BalanceProviderState = Pick<IBalanceContext, 'open' | 'currency'>;
 
 const defaultContextValue: IBalanceContext = {
   currency: null,
-  onDoneEditingBalance: () => {/**/},
-  onEditingBalance: () => {/**/},
+  onDoneEditingBalance: noop,
+  onEditingBalance: noop,
   open: false,
 };
 
@@ -29,10 +30,12 @@ export class BalanceProvider extends Component<{}, BalanceProviderState> {
   public render() {
     const { children } = this.props;
     const { currency, open } = this.state;
+
     const contextValue = {
       currency,
-      onDoneEditingBalance: this.onDoneEditingBalance(this),
-      onEditingBalance: this.onEditingBalance(this),
+      // TODO: bind once or don't
+      onDoneEditingBalance: this.onDoneEditingBalance.bind(this),
+      onEditingBalance: this.onEditingBalance.bind(this),
       open,
     };
 
@@ -43,15 +46,15 @@ export class BalanceProvider extends Component<{}, BalanceProviderState> {
     );
   }
 
-  private onEditingBalance = (ctx: this) => (currency: Currency) => { // (☞ﾟ∀ﾟ)☞
-    ctx.setState({
+  private onEditingBalance(currency: Currency) {
+    this.setState({
       currency,
       open: true,
     });
   }
 
-  private onDoneEditingBalance = (ctx: this) => () => { // (☞ﾟ∀ﾟ)☞
-    ctx.setState({
+  private onDoneEditingBalance() {
+    this.setState({
       currency: null,
       open: false,
     });
