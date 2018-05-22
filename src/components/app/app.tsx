@@ -4,7 +4,6 @@ import { withStyles, WithStyles } from 'material-ui/styles';
 
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import 'animate.css';
 
 import { styles, ClassNames } from './styles';
 import { ISetTmpLayoutAction, ISyncLayoutAction } from '@src/redux_/layout';

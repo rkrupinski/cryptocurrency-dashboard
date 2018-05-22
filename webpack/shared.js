@@ -1,6 +1,5 @@
 const { resolve } = require('path');
-const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -18,7 +17,7 @@ module.exports = {
       'node_modules',
     ],
     plugins: [
-      new TsConfigPathsPlugin(),
+      new TsconfigPathsPlugin(),
     ],
   },
 
@@ -28,16 +27,7 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: [
-          'react-hot-loader/webpack',
-          {
-            loader: 'awesome-typescript-loader',
-            options: {
-              useCache: true,
-              reportFiles: [
-                'src/**/*.{ts,tsx}',
-              ],
-            },
-          },
+          'ts-loader',
         ],
       },
       {
@@ -69,7 +59,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HardSourceWebpackPlugin(),
-  ],
 };

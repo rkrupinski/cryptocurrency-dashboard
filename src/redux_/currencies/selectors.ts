@@ -10,7 +10,7 @@ export const selectAllCurrencies = createSelector(
 
 export const selectRemainingCurrencies = createSelector(
   selectCurrencies,
-  ({ all, selected }) => all.filter(({ id }) => selected.indexOf(id) === -1),
+  ({ all, selected }) => all.filter(({ id }) => !selected.includes(id)),
 );
 
 export const selectLoading = createSelector(

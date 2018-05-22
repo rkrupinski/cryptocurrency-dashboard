@@ -14,6 +14,7 @@ export const selectLoading = createSelector(
 );
 
 export const makeSelectPrice = () => createSelector(
-  [ selectData, (_: any, currency: Currency) => currency],
+  selectData,
+  (_: any, currency: Currency) => currency,
   (prices, { symbol }) => prices[symbol],
 );

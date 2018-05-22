@@ -1,4 +1,5 @@
 import React, { Fragment, SFC } from 'react';
+import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { IntlProvider } from 'react-intl';
@@ -10,7 +11,7 @@ export interface IRootProps {
   store: Store;
 }
 
-export const Root: SFC<IRootProps> = ({
+export const RootRaw: SFC<IRootProps> = ({
   store,
 }) => (
   <Provider store={store}>
@@ -22,3 +23,5 @@ export const Root: SFC<IRootProps> = ({
     </IntlProvider>
   </Provider>
 );
+
+export const Root = hot(module)(RootRaw);

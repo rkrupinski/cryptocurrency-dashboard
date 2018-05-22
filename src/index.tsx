@@ -1,37 +1,13 @@
 import React, { SFC } from 'react';
 import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import { Provider } from 'react-redux';
 
-import configureStore from '@src/configureStore';
-import { rootReducer } from '@src/redux_';
-import { Root, IRootProps } from '@src/components/root';
 import { load as loadFonts } from '@src/webfonts';
+import { Root } from '@src/components/root';
+import configureStore from '@src/configureStore';
+
+loadFonts(); // (☞ﾟ∀ﾟ)☞
 
 const store = configureStore();
 const appRoot = document.querySelector('#app')!;
 
-loadFonts(); // (☞ﾟ∀ﾟ)☞
-
-render(Root);
-
-if (module.hot) {
-  module.hot.accept('@src/components/root', () => {
-    render(Root);
-  });
-
-  module.hot.accept('@src/redux_/rootReducer', () => {
-    store.replaceReducer(rootReducer);
-  });
-}
-
-function render(RootComponent: SFC<IRootProps>) {
-  ReactDOM.render(
-    (
-      <AppContainer>
-        <RootComponent store={store} />
-      </AppContainer>
-    ),
-    appRoot,
-  );
-}
+ReactDOM.render(<Root store={store} />, appRoot);

@@ -1,49 +1,31 @@
 import React, { SFC } from 'react';
 import Button from 'material-ui/Button';
-import Tooltip from 'material-ui/Tooltip';
 import RefreshIcon from 'material-ui-icons/Refresh';
 import Typography from 'material-ui/Typography';
-import { withStyles, WithStyles } from 'material-ui/styles';
+import Zoom from 'material-ui/transitions/Zoom';
 
-import { IForceRefreshAction } from '@src/redux_/refresh';
-import { styles, ClassNames } from './styles';
+import { IForceRefreshAction, RefreshRate } from '@src/redux_/refresh';
 
 interface IRefreshButtonProps {
   forceRefresh: () => IForceRefreshAction;
+  refreshRate: RefreshRate;
 }
 
-export const RefreshButtonRaw: SFC<
-  IRefreshButtonProps & WithStyles<ClassNames>
-> = ({
-  classes,
+export const RefreshButton: SFC<IRefreshButtonProps> = ({
   forceRefresh,
-}) => {
-  const renderTooltip = (
-    <Typography
-      className={classes.tooltip}
-      component={'span'}
-      variant={'body2'}
+  refreshRate,
+}) => (
+  <Zoom
+    in={refreshRate === 'manual'}
+    unmountOnExit={true}
+  >
+    <Button
+      aria-label={'Refresh'}
+      color={'primary'}
+      onClick={forceRefresh}
+      variant={'fab'}
     >
-      Refresh
-    </Typography>
-  );
-
-  return (
-    <Tooltip
-      title={renderTooltip}
-      placement={'top'}
-    >
-      <Button
-        className={'bounceIn animated'}
-        aria-label={'Refresh'}
-        color={'primary'}
-        onClick={forceRefresh}
-        variant={'fab'}
-      >
-        <RefreshIcon />
-      </Button>
-    </Tooltip>
-  );
-};
-
-export const RefreshButton = withStyles(styles)(RefreshButtonRaw);
+      <RefreshIcon />
+    </Button>
+  </Zoom>
+);

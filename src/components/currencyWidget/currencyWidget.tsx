@@ -62,22 +62,6 @@ export const CurrencyWidgetRaw: SFC<
     </Money>
   );
 
-  const renderPriceSpinner = priceLoading && (
-    <Spinner spinnerProps={{ size: 36 }} />
-  );
-
-  const renderChart = shouldRenderChart && (
-    <PriceChart data={chartData} />
-  );
-
-  const renderChartMeta = shouldRenderChart && (
-    <PriceChartMeta data={chartData} />
-  );
-
-  const renderChartSpinner = chartDataLoading && (
-    <Spinner spinnerProps={{ size: 36 }} />
-  );
-
   return (
     <Container>
       <BalanceConsumer>
@@ -93,17 +77,17 @@ export const CurrencyWidgetRaw: SFC<
       </Typography>
 
       {renderPrice}
-      {renderPriceSpinner}
+      {priceLoading && <Spinner />}
 
       <Divider className={classes.divider} />
 
       <Grid container={true} alignItems={'center'} spacing={0}>
         <Grid item={true} xs={9}>
-          {renderChart}
-          {renderChartSpinner}
+          {shouldRenderChart && <PriceChart data={chartData} />}
+          {chartDataLoading && <Spinner />}
         </Grid>
         <Grid item={true} xs={3}>
-          {renderChartMeta}
+          {shouldRenderChart && <PriceChartMeta data={chartData} />}
         </Grid>
       </Grid>
     </Container>
