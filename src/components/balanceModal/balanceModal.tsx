@@ -6,15 +6,15 @@ import Dialog, {
   DialogActions,
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
-import Zoom, { ZoomProps } from 'material-ui/transitions/Zoom';
+import Slide, { SlideProps } from 'material-ui/transitions/Slide';
 import { FormAction } from 'redux-form';
 
 import { TotalBalance } from '@src/redux_/wallet';
 import { IBalanceContext } from '@src/components/balanceContext';
 import { BalanceForm, IBalanceFormData } from '@src/components/balanceForm';
 
-export const BalanceTransition = (props: ZoomProps) => (
-  <Zoom {...props} />
+export const BalanceTransition = (props: SlideProps) => (
+  <Slide direction={'up'} {...props} />
 );
 
 export type BalanceModalProps = {
