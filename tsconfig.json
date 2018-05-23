@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "downlevelIteration": true,
     "jsx": "react",
     "lib": [
       "es2017.object",
@@ -19,7 +20,7 @@
     },
     "sourceMap": true,
     "strict": true,
-    "target": "es6"
+    "target": "es5"
   },
   "exclude": [
     "node_modules",

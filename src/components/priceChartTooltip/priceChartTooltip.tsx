@@ -1,8 +1,8 @@
 import React, { SFC } from 'react';
 import { TooltipProps, TooltipPayload } from 'recharts';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-import { withStyles, WithStyles } from 'material-ui/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { MoneyConnected as Money } from '@src/components/money';
 import { styles, ClassNames } from './styles';

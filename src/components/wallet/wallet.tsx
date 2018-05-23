@@ -1,7 +1,7 @@
 import React, { SFC } from 'react';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
-import { withStyles, WithStyles } from 'material-ui/styles';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { TotalBalance } from '@src/redux_/wallet';
 import { Target } from '@src/redux_/currencies';

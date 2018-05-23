@@ -1,6 +1,6 @@
 import React, { SFC } from 'react';
-import Grid from 'material-ui/Grid';
-import { withStyles, WithStyles } from 'material-ui/styles';
+import Grid from '@material-ui/core/Grid';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { WalletConnected as Wallet } from '@src/components/wallet';
 import { RefreshButtonConnected as RefreshButton } from '@src/components/refreshButton';

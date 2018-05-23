@@ -1,4 +1,4 @@
-import { Theme } from 'material-ui/styles';
+import { Theme } from '@material-ui/core/styles';
 
 // https://github.com/mui-org/material-ui/issues/8824
 export type ClassNames = // ¯\_(ツ)_/¯

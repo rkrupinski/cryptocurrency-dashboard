@@ -1,10 +1,10 @@
 import React, { SFC } from 'react';
-import { withStyles, WithStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
-import TrendingUpIcon from 'material-ui-icons/TrendingUp';
-import TrendingDownIcon from 'material-ui-icons/TrendingDown';
-import TrendingFlatIcon from 'material-ui-icons/TrendingFlat';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import TrendingDownIcon from '@material-ui/icons/TrendingDown';
+import TrendingFlatIcon from '@material-ui/icons/TrendingFlat';
 
 import { ChartData } from '@src/redux_/charts';
 import { styles, ClassNames } from './styles';

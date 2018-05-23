@@ -1,8 +1,8 @@
 import React, { SFC } from 'react';
-import Typography from 'material-ui/Typography';
-import Divider from 'material-ui/Divider';
-import Grid from 'material-ui/Grid';
-import { withStyles, WithStyles } from 'material-ui/styles';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { Currency, Target } from '@src/redux_/currencies';
 import { Price } from '@src/redux_/prices';

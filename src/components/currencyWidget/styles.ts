@@ -1,5 +1,5 @@
-import { Theme } from 'material-ui/styles';
-import { grey } from 'material-ui/colors';
+import { Theme } from '@material-ui/core/styles';
+import grey from '@material-ui/core/colors/grey';
 
 export type ClassNames =
   | 'currencyName'

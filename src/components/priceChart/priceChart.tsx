@@ -6,7 +6,7 @@ import {
   YAxis,
   Tooltip,
 } from 'recharts';
-import { withTheme, WithTheme } from 'material-ui/styles';
+import { withTheme, WithTheme } from '@material-ui/core/styles';
 
 import { ChartData } from '@src/redux_/charts';
 import { PriceChartTooltip } from '@src/components/priceChartTooltip';

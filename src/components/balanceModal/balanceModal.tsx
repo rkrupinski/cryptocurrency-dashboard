@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-} from 'material-ui/Dialog';
-import Button from 'material-ui/Button';
-import Slide, { SlideProps } from 'material-ui/transitions/Slide';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
+import Slide, { SlideProps } from '@material-ui/core/Slide';
 import { FormAction } from 'redux-form';
 
 import { TotalBalance } from '@src/redux_/wallet';

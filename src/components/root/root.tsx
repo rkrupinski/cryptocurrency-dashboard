@@ -3,7 +3,7 @@ import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { IntlProvider } from 'react-intl';
-import CssBaseline from 'material-ui/CssBaseline';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { AppConnected as App } from '@src/components/app';
 

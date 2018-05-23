@@ -1,5 +1,7 @@
-import { Theme } from 'material-ui/styles';
-import { green, grey, red } from 'material-ui/colors';
+import { Theme } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+import grey from '@material-ui/core/colors/grey';
+import red from '@material-ui/core/colors/red';
 
 export type ClassNames =
   | 'icon'

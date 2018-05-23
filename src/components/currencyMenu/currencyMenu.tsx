@@ -1,11 +1,13 @@
 import React, { Fragment, Component, MouseEvent } from 'react';
-import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui-icons/MoreVert';
-import DeleteIcon from 'material-ui-icons/DeleteForever';
-import WalletIcon from 'material-ui-icons/AccountBalanceWallet';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import { ListItemIcon, ListItemText } from 'material-ui/List';
-import { withStyles, WithStyles } from 'material-ui/styles';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import DeleteIcon from '@material-ui/icons/DeleteForever';
+import WalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { Currency, ICurrencyDeselectedAction } from '@src/redux_/currencies';
 import { TotalBalance } from '@src/redux_/wallet';

@@ -1,6 +1,6 @@
 import React, { Component, ChangeEvent } from 'react';
 import Autosuggest from 'react-autosuggest';
-import { withStyles, WithStyles } from 'material-ui/styles';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { Currency, ICurrencySelectedAction } from '@src/redux_/currencies';
 import { renderInput, renderSuggestionsContainer, renderSuggestion } from './renderers';

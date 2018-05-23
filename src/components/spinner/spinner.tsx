@@ -1,5 +1,5 @@
 import React, { SFC } from 'react';
-import { CircularProgress, CircularProgressProps } from 'material-ui/Progress';
+import CircularProgress, { CircularProgressProps } from '@material-ui/core/CircularProgress';
 
 export interface ISpinnerProps {
   spinnerProps?: CircularProgressProps;

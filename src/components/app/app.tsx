@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import ReactGridLayout, { WidthProvider, Layout } from 'react-grid-layout';
-import { withStyles, WithStyles } from 'material-ui/styles';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
@@ -50,8 +50,8 @@ export class AppRaw extends Component<
   public render() {
     const { currencies, layout, classes } = this.props;
 
-    const renderCurrencies = currencies.map((currency) => {
-      const gridData = layout.find(({ i }) => i === currency.id);
+    const renderCurrencies = currencies.map((currency: Currency) => {
+      const gridData = layout.find(({ i }: Layout) => i === currency.id);
 
       return (
         <div key={currency.id} data-grid={gridData}>

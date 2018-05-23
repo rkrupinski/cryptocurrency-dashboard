@@ -1,8 +1,8 @@
 import React, { SFC } from 'react';
-import Button from 'material-ui/Button';
-import RefreshIcon from 'material-ui-icons/Refresh';
-import Typography from 'material-ui/Typography';
-import Zoom from 'material-ui/transitions/Zoom';
+import Button from '@material-ui/core/Button';
+import RefreshIcon from '@material-ui/icons/Refresh';
+import Typography from '@material-ui/core/Typography';
+import Zoom from '@material-ui/core/Zoom';
 
 import { IForceRefreshAction, RefreshRate } from '@src/redux_/refresh';
 

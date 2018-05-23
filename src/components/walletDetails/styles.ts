@@ -1,4 +1,4 @@
-import { Theme } from 'material-ui/styles';
+import { Theme } from '@material-ui/core/styles';
 
 export type ClassNames =
   | 'container'

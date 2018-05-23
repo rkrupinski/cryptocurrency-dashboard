@@ -1,8 +1,8 @@
 import React, { SFC, Fragment } from 'react';
-import InfoIcon from 'material-ui-icons/Info';
-import Tooltip from 'material-ui/Tooltip';
-import Typography from 'material-ui/Typography';
-import { withStyles, WithStyles } from 'material-ui/styles';
+import InfoIcon from '@material-ui/icons/Info';
+import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { Currency } from '@src/redux_/currencies';
 import { TotalBalance } from '@src/redux_/wallet';

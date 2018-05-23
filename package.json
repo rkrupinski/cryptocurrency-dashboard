@@ -40,7 +40,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
     "gh-pages": "^1.1.0",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "3.0.7",
     "jest": "^22.1.4",
     "jest-localstorage-mock": "^2.2.0",
     "pre-commit": "^1.2.2",
@@ -60,10 +60,10 @@
     "webpack-merge": "^4.1.2"
   },
   "dependencies": {
+    "@material-ui/core": "^1.0.0",
+    "@material-ui/icons": "^1.0.0",
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.17.1",
-    "material-ui": "v1.0.0-beta.47",
-    "material-ui-icons": "1.0.0-beta.36",
     "react": "^16.3.2",
     "react-autosuggest": "^9.3.2",
     "react-dom": "^16.3.2",
