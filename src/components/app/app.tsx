@@ -71,7 +71,7 @@ export class AppRaw extends Component<
       <Fragment>
         <BalanceProvider>
           <GridLayout
-            className={`layout ${classes.grid}`}
+            className={`layout`}
             cols={4}
             draggableHandle={'.handle'}
             isResizable={false}
