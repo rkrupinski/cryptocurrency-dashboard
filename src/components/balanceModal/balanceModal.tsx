@@ -7,10 +7,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Slide, { SlideProps } from '@material-ui/core/Slide';
 import { FormAction } from 'redux-form';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { TotalBalance } from '@src/redux_/wallet';
 import { IBalanceContext } from '@src/components/balanceContext';
 import { BalanceForm, IBalanceFormData } from '@src/components/balanceForm';
+import { styles, ClassNames } from './styles';
 
 export const BalanceTransition = (props: SlideProps) => (
   <Slide direction={'up'} {...props} />
@@ -21,10 +23,13 @@ export type BalanceModalProps = {
   submit: () => FormAction;
 } & Pick<IBalanceContext, 'open' | 'currency' | 'onDoneEditingBalance'>;
 
-export class BalanceModal extends Component<BalanceModalProps> {
+export class BalanceModalRaw extends Component<
+  BalanceModalProps & WithStyles<ClassNames>
+> {
   public render() {
     const {
       balance,
+      classes,
       currency,
       onDoneEditingBalance,
       open,
@@ -37,6 +42,7 @@ export class BalanceModal extends Component<BalanceModalProps> {
         onClose={onDoneEditingBalance}
         TransitionComponent={BalanceTransition}
         aria-labelledby={'balance-modal-title'}
+        classes={{ paper: classes.modal }}
       >
         <DialogTitle id={'balance-modal-title'}>Edit balance</DialogTitle>
         <DialogContent>
@@ -58,11 +64,13 @@ export class BalanceModal extends Component<BalanceModalProps> {
   }
 
   private onSubmit = ({ balance }: IBalanceFormData) => {
-    const { onDoneEditingBalance } = this.props;
+    const { onDoneEditingBalance, currency } = this.props;
     /* tslint:disable */
-    console.log('onSubmit', balance);
+    console.log('onSubmit', balance, currency);
     /* tslint:enable */
 
     onDoneEditingBalance();
   }
 }
+
+export const BalanceModal = withStyles(styles)(BalanceModalRaw);
