@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -28,39 +28,50 @@ export class BalanceModalRaw extends Component<
 > {
   public render() {
     const {
-      balance,
       classes,
-      currency,
       onDoneEditingBalance,
       open,
       submit,
     } = this.props;
 
-    return currency ? (
+    return (
       <Dialog
         open={open}
         onClose={onDoneEditingBalance}
         TransitionComponent={BalanceTransition}
         aria-labelledby={'balance-modal-title'}
         classes={{ paper: classes.modal }}
+        keepMounted={true}
       >
         <DialogTitle id={'balance-modal-title'}>Edit balance</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            How much <strong>{currency.name}</strong> do you hold?
-          </DialogContentText>
-          <BalanceForm
-            currency={currency}
-            onSubmit={this.onSubmit}
-            initialValues={{ balance: balance[currency.symbol] || 0 }}
-          />
+          {this.renderDialogContent()}
         </DialogContent>
         <DialogActions>
           <Button onClick={onDoneEditingBalance}>Cancel</Button>
           <Button color={'primary'} onClick={submit}>Save</Button>
         </DialogActions>
       </Dialog>
-    ) : null;
+    );
+  }
+
+  private renderDialogContent = () => {
+    const { currency, balance } = this.props;
+
+    return currency ? (
+      <Fragment>
+        <DialogContentText>
+          How much <strong>{currency.name}</strong> do you hold?
+        </DialogContentText>
+        <BalanceForm
+          currency={currency}
+          onSubmit={this.onSubmit}
+          initialValues={{ balance: balance[currency.symbol] || 0 }}
+        />
+      </Fragment>
+    ) : (
+      <div style={{ height: 80 }} /> // (☞ﾟ∀ﾟ)☞
+    );
   }
 
   private onSubmit = ({ balance }: IBalanceFormData) => {
