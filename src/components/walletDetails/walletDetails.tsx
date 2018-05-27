@@ -6,7 +6,10 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { Currency } from '@src/redux_/currencies';
 import { TotalBalance } from '@src/redux_/wallet';
-import { WalletDetailsItem } from '@src/components/walletDetailsItem';
+import {
+  WalletDetailsItemConnected as WalletDetailsItem,
+  IWalletDetailsItemProps,
+} from '@src/components/walletDetailsItem';
 import { styles, ClassNames } from './styles';
 
 export interface IWalletDetailsProps {
@@ -25,11 +28,10 @@ export const WalletDetailsRaw: SFC<
 }) => {
   const details = allCurrencies
       .filter(({ symbol }) => selectedSymbols.includes(symbol))
-      .map(({ id, name, symbol }) => {
+      .map((currency) => {
         return {
-          amount: balance[symbol],
-          id,
-          name,
+          amount: balance[currency.symbol],
+          currency,
         };
       })
       .filter(({ amount }) => !!amount);
@@ -44,9 +46,19 @@ export const WalletDetailsRaw: SFC<
     </Typography>
   );
 
+  const renderItem = (props: Pick<IWalletDetailsItemProps, 'currency' | 'amount'>) => {
+    const { currency } = props;
+
+    return (
+      <li key={currency.id}>
+        <WalletDetailsItem {...props} />
+      </li>
+    );
+  };
+
   const renderDetails = !!details.length && (
     <ul className={classes.list}>
-      {details.map(({ id, ...rest }) => <WalletDetailsItem key={id} {...rest} />)}
+      {details.map(renderItem)}
     </ul>
   );
 

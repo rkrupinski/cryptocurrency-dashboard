@@ -18,7 +18,7 @@ const mapStateToProps = (
   return {
     chartData: selectChartData(state, currency),
     chartDataLoading: selectChartDataLoading(state, currency!),
-    price: selectPrice(state, currency!),
+    price: selectPrice(state, currency),
     priceLoading: selectLoading(state),
     target: selectTarget(state),
   };
