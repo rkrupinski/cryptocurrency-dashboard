@@ -1,19 +1,21 @@
-import React, { PureComponent, ChangeEvent } from 'react';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import { withStyles, WithStyles } from 'material-ui/styles';
-import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
+import React, { Component, ChangeEvent } from 'react';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { Target, IToggleTargetAction } from '@src/redux_/currencies';
 import { styles, ClassNames } from './styles';
 import { Container } from '@src/components/container';
 
 export interface ITargetSelectorProps {
-  loading: boolean;
   target: Target;
   toggleTarget: (target: Target) => IToggleTargetAction;
 }
 
-export class TargetSelectorRaw extends PureComponent<
+export class TargetSelectorRaw extends Component<
   ITargetSelectorProps & WithStyles<ClassNames>
 > {
   constructor(props: ITargetSelectorProps & WithStyles<ClassNames>) {
@@ -42,12 +44,12 @@ export class TargetSelectorRaw extends PureComponent<
             onChange={this.handleChange}
           >
             <FormControlLabel
-              control={<Radio />}
+              control={<Radio color={'primary'} />}
               label={'USD'}
               value={'USD'}
             />
             <FormControlLabel
-              control={<Radio />}
+              control={<Radio color={'primary'} />}
               label={'EUR'}
               value={'EUR'}
             />

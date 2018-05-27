@@ -15,7 +15,10 @@ exports[`Renders root 1`] = `
   <IntlProvider
     locale="en-US"
   >
-    <Connect(withStyles(AppRaw)) />
+    <React.Fragment>
+      <WithStyles(CssBaseline) />
+      <Connect(WithStyles(AppRaw)) />
+    </React.Fragment>
   </IntlProvider>
 </Provider>
 `;

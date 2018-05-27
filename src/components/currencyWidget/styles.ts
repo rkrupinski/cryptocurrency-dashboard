@@ -1,16 +1,16 @@
-import { Theme } from 'material-ui/styles';
-import { grey } from 'material-ui/colors';
+import { Theme } from '@material-ui/core/styles';
+import grey from '@material-ui/core/colors/grey';
 
 export type ClassNames =
   | 'currencyName'
-  | 'deselectBtn'
   | 'divider'
+  | 'menu'
   | 'price';
 
 const ellipsis = {
   overflow: 'hidden' as 'hidden',
   textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
+  whiteSpace: 'nowrap' as 'nowrap',
 };
 
 export const styles = (theme: Theme) => ({
@@ -23,13 +23,13 @@ export const styles = (theme: Theme) => ({
     marginRight: '40px',
     ...ellipsis,
   },
-  deselectBtn: {
-    position: 'absolute' as 'absolute',
-    right: '3px',
-    top: '3px',
-  },
   divider: {
     margin: '10px 0',
+  },
+  menu: {
+    position: 'absolute' as 'absolute',
+    right: 8,
+    top: 8,
   },
   price: {
     ...ellipsis,

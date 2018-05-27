@@ -1,2 +1,2 @@
-export * from './toolbar';
+export * from './money';
 export * from './connected';

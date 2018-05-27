@@ -1,26 +1,26 @@
-import React, { PureComponent, ChangeEvent } from 'react';
-import Select from 'material-ui/Select';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import { FormControl } from 'material-ui/Form';
+import React, { Component, ChangeEvent } from 'react';
+import Select from '@material-ui/core/Select';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 
 import { RefreshRate, ISetRefreshRateAction } from '@src/redux_/refresh';
 import { Container } from '@src/components/container';
 
 export interface IRefreshWidgetProps {
-  loading: boolean;
   refreshRate: RefreshRate;
   setRefreshRate: (rate: RefreshRate) => ISetRefreshRateAction;
 }
 
-export class RefreshWidget extends PureComponent<IRefreshWidgetProps> {
+export class RefreshWidget extends Component<IRefreshWidgetProps> {
   public render() {
     const { refreshRate } = this.props;
 
     return (
       <Container>
         <FormControl fullWidth={true}>
-          <InputLabel htmlFor={'refresh-rate'}>Refresh</InputLabel>
+          <InputLabel htmlFor={'refresh-rate'}>Refresh data</InputLabel>
           <Select
             value={refreshRate}
             onChange={this.handleChange}
@@ -35,7 +35,7 @@ export class RefreshWidget extends PureComponent<IRefreshWidgetProps> {
     );
   }
 
-  private handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  private handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { setRefreshRate } = this.props;
 
     setRefreshRate(e.target.value as RefreshRate);

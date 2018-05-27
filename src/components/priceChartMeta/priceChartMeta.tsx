@@ -1,10 +1,11 @@
 import React, { SFC } from 'react';
-import { withStyles, WithStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
-import TrendingUpIcon from 'material-ui-icons/TrendingUp';
-import TrendingDownIcon from 'material-ui-icons/TrendingDown';
-import TrendingFlatIcon from 'material-ui-icons/TrendingFlat';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import TrendingDownIcon from '@material-ui/icons/TrendingDown';
+import TrendingFlatIcon from '@material-ui/icons/TrendingFlat';
+import { FormattedNumber } from 'react-intl';
 
 import { ChartData } from '@src/redux_/charts';
 import { styles, ClassNames } from './styles';
@@ -18,10 +19,9 @@ export const PriceChartMetaRaw: SFC<
 > = ({ data, classes }) => {
   const [{ price: open }, ...rest] = data;
   const { price: close } = rest.pop()!; // (☞ﾟ∀ﾟ)☞
-  const change = (close - open) / open * 100;
-  const DECIMAL_PLACES = 2;
+  const change = (close - open) / open;
 
-  let className;
+  let className: string;
   let IconComponent;
 
   switch (true) {
@@ -41,6 +41,16 @@ export const PriceChartMetaRaw: SFC<
       break;
   }
 
+  const renderChange = (f: string) => (
+    <Typography
+      className={className}
+      component={'span'}
+      variant={'body2'}
+    >
+      {f}
+    </Typography>
+  );
+
   return (
     <Grid
       container={true}
@@ -49,13 +59,13 @@ export const PriceChartMetaRaw: SFC<
     >
       <Grid item={true}>
         <IconComponent className={`${className} ${classes.icon}`} />
-        <Typography
-          className={className}
-          component={'span'}
-          type={'body2'}
+        <FormattedNumber
+          value={change}
+          style={'percent'}
+          maximumFractionDigits={2}
         >
-          {`${change.toFixed(DECIMAL_PLACES)}%`}
-        </Typography>
+          {renderChange}
+        </FormattedNumber>
       </Grid>
     </Grid>
   );

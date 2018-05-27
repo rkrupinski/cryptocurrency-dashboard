@@ -19,11 +19,13 @@ export const selectLoading = createSelector(
 );
 
 export const makeSelectChartData = () => createSelector(
-  [ selectData, (_: any, currency: Currency) => currency ],
+  selectData,
+  (_: any, currency: Currency) => currency,
   (data, { id }) => data[id],
 );
 
 export const makeSelectChartDataLoading = () => createSelector(
-  [ selectLoading, (_: any, currency: Currency) => currency ],
+  selectLoading,
+  (_: any, currency: Currency) => currency,
   (loading, { id }) => loading[id],
 );

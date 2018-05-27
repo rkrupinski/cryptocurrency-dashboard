@@ -1,5 +1,5 @@
 const { resolve } = require('path');
-const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -17,7 +17,7 @@ module.exports = {
       'node_modules',
     ],
     plugins: [
-      new TsConfigPathsPlugin(),
+      new TsconfigPathsPlugin(),
     ],
   },
 
@@ -27,8 +27,7 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: [
-          'react-hot-loader/webpack',
-          'awesome-typescript-loader',
+          'ts-loader',
         ],
       },
       {
@@ -40,6 +39,7 @@ module.exports = {
             loader: 'tslint-loader',
             options: {
               emitErrors: true,
+              forceIsolatedModules: true,
               typeCheck: true,
             },
           },

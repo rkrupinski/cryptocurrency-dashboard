@@ -1,29 +1,13 @@
-import { createSelector } from 'reselect';
-
 import { IRootState } from '.';
-import { identity } from '@src/common/utils';
 
-export const selectCurrencies = createSelector(
-  ({ currencies }: IRootState) => currencies,
-  identity,
-);
+export const selectCurrencies = ({ currencies }: IRootState) => currencies;
 
-export const selectLayout = createSelector(
-  ({ layout }: IRootState) => layout,
-  identity,
-);
+export const selectLayout = ({ layout }: IRootState) => layout;
 
-export const selectPrices = createSelector(
-  ({ prices }: IRootState) => prices,
-  identity,
-);
+export const selectPrices = ({ prices }: IRootState) => prices;
 
-export const selectCharts = createSelector(
-  ({ charts }: IRootState) => charts,
-  identity,
-);
+export const selectCharts = ({ charts }: IRootState) => charts;
 
-export const selectRefresh = createSelector(
-  ({ refresh }: IRootState) => refresh,
-  identity,
-);
+export const selectRefresh = ({ refresh }: IRootState) => refresh;
+
+export const selectWallet = ({ wallet }: IRootState) => wallet;

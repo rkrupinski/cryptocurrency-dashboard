@@ -3,9 +3,14 @@ import { createSelector } from 'reselect';
 import { selectCurrencies } from '@src/redux_/selectors';
 import { Currency } from '@src/redux_/currencies';
 
+export const selectAllCurrencies = createSelector(
+  selectCurrencies,
+  ({ all }) => all,
+);
+
 export const selectRemainingCurrencies = createSelector(
   selectCurrencies,
-  ({ all, selected }) => all.filter(({ id }) => selected.indexOf(id) === -1),
+  ({ all, selected }) => all.filter(({ id }) => !selected.includes(id)),
 );
 
 export const selectLoading = createSelector(

@@ -1,19 +1,19 @@
-import React, { PureComponent, ChangeEvent } from 'react';
-import Select from 'material-ui/Select';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import { FormControl } from 'material-ui/Form';
+import React, { Component, ChangeEvent } from 'react';
+import Select from '@material-ui/core/Select';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 
 import { ChartMode, IToggleChartModeAction } from '@src/redux_/charts';
 import { Container } from '@src/components/container';
 
 export interface IChartModeSelectorProps {
-  loading: boolean;
   mode: ChartMode;
   toggleChartMode: (mode: ChartMode) => IToggleChartModeAction;
 }
 
-export class ChartModeSelector extends PureComponent<IChartModeSelectorProps> {
+export class ChartModeSelector extends Component<IChartModeSelectorProps> {
   public render() {
     const { mode } = this.props;
 
@@ -35,7 +35,7 @@ export class ChartModeSelector extends PureComponent<IChartModeSelectorProps> {
     );
   }
 
-  private handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  private handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { toggleChartMode } = this.props;
 
     toggleChartMode(e.target.value as ChartMode);

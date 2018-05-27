@@ -12,6 +12,7 @@ export interface IState {
 
 const SELECTED_BY_DEFAULT = [
   '1182', // BTC
+  '7605', // ETH
 ];
 
 export const reducer = combineReducers<IState, RootAction>({

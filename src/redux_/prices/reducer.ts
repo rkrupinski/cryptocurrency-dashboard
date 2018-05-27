@@ -9,7 +9,7 @@ export interface IState {
 }
 
 export const reducer = combineReducers<IState, RootAction>({
-  loading(state = false, action) {
+  loading(state = true, action) {
     switch (action.type) {
       case ActionTypes.PRICES_LOADING_START:
         return true;

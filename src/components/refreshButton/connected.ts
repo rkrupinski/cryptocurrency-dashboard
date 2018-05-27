@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
+import { RefreshButton } from '.';
 import { IRootState } from '@src/redux_';
-import { selectRefreshRate } from '@src/redux_/refresh/selectors';
 import { forceRefresh } from '@src/redux_/refresh';
-import { Toolbar } from '.';
+import { selectRefreshRate } from '@src/redux_/refresh/selectors';
 
 const mapStateToProps = (state: IRootState) => ({
   refreshRate: selectRefreshRate(state),
@@ -13,7 +13,7 @@ const mapDispatchToProps = {
   forceRefresh,
 };
 
-export const ToolbarConnected = connect(
+export const RefreshButtonConnected = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Toolbar);
+)(RefreshButton);
