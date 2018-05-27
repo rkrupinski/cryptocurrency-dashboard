@@ -21,7 +21,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: resolve(__dirname, '..', 'src', 'index.ejs'),
-      title: 'Cryptocurrency dashboard',
     }),
   ],
   performance: {

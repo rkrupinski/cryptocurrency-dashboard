@@ -9,7 +9,8 @@ import Slide, { SlideProps } from '@material-ui/core/Slide';
 import { FormAction } from 'redux-form';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 
-import { TotalBalance } from '@src/redux_/wallet';
+import { TotalBalance, ISetBalanceAction } from '@src/redux_/wallet';
+import { Currency } from '@src/redux_/currencies';
 import { IBalanceContext } from '@src/components/balanceContext';
 import { BalanceForm, IBalanceFormData } from '@src/components/balanceForm';
 import { styles, ClassNames } from './styles';
@@ -20,6 +21,7 @@ export const BalanceTransition = (props: SlideProps) => (
 
 export type BalanceModalProps = {
   balance: TotalBalance,
+  setBalance: (currency: Currency, balance: number) => ISetBalanceAction;
   submit: () => FormAction;
 } & Pick<IBalanceContext, 'open' | 'currency' | 'onDoneEditingBalance'>;
 
@@ -29,6 +31,7 @@ export class BalanceModalRaw extends Component<
   public render() {
     const {
       classes,
+      currency,
       onDoneEditingBalance,
       open,
       submit,
@@ -41,7 +44,6 @@ export class BalanceModalRaw extends Component<
         TransitionComponent={BalanceTransition}
         aria-labelledby={'balance-modal-title'}
         classes={{ paper: classes.modal }}
-        keepMounted={true}
       >
         <DialogTitle id={'balance-modal-title'}>Edit balance</DialogTitle>
         <DialogContent>
@@ -75,10 +77,15 @@ export class BalanceModalRaw extends Component<
   }
 
   private onSubmit = ({ balance }: IBalanceFormData) => {
-    const { onDoneEditingBalance, currency } = this.props;
-    /* tslint:disable */
-    console.log('onSubmit', balance, currency);
-    /* tslint:enable */
+    const {
+      currency,
+      onDoneEditingBalance,
+      setBalance,
+    } = this.props;
+
+    if (currency) {
+      setBalance(currency, Number(balance));
+    }
 
     onDoneEditingBalance();
   }

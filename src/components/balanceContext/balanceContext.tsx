@@ -47,17 +47,19 @@ export class BalanceProvider extends Component<{}, BalanceProviderState> {
   }
 
   private onEditingBalance(currency: Currency) {
-    this.setState({
+    this.setState((prevState: BalanceProviderState) => ({
+      ...prevState,
       currency,
       open: true,
-    });
+    }));
   }
 
   private onDoneEditingBalance() {
-    this.setState({
+    this.setState((prevState: BalanceProviderState) => ({
+      ...prevState,
       currency: null,
       open: false,
-    });
+    }));
   }
 }
 

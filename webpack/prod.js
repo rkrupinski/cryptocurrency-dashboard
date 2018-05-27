@@ -16,7 +16,6 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: resolve(__dirname, '..' ,'src', 'index.ejs'),
-      title: 'Cryptocurrency dashboard',
       minify: {
         collapseWhitespace: true,
       },

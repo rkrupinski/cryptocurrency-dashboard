@@ -29,6 +29,14 @@ export type BalanceFormProps = ICustomBalanceFormProps &
 export class BalanceFormRaw extends Component<
   BalanceFormProps & WithStyles<ClassNames>
 > {
+  private field?: HTMLInputElement;
+
+  public componentDidUpdate() {
+    if (this.field) {
+      this.field.focus(); // (☞ﾟ∀ﾟ)☞
+    }
+  }
+
   public render() {
     const { currency, handleSubmit } = this.props;
 
@@ -45,6 +53,8 @@ export class BalanceFormRaw extends Component<
       </form>
     );
   }
+
+  private setFieldRef = (field: HTMLInputElement) => this.field = field;
 
   private renderBalanceField = ({
     input,
@@ -76,6 +86,7 @@ export class BalanceFormRaw extends Component<
           classes={{ input: classes.input }}
           endAdornment={renderSymbol}
           inputProps={inputProps}
+          inputRef={this.setFieldRef}
           {...input}
         />
         {renderError}
