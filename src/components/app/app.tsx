@@ -36,15 +36,10 @@ export class AppRaw extends Component<
   IAppProps & WithStyles<ClassNames>,
   {}
 > {
-  constructor(props: IAppProps & WithStyles<ClassNames>) {
-    super(props);
-
-    this.onLayoutChange = this.onLayoutChange.bind(this);
-    this.onDragStop = this.onDragStop.bind(this);
-  }
-
   public componentDidMount() {
-    this.props.fetchCurrencies();
+    const { fetchCurrencies } = this.props;
+
+    fetchCurrencies();
   }
 
   public render() {
@@ -78,6 +73,7 @@ export class AppRaw extends Component<
             layout={layout}
             onLayoutChange={this.onLayoutChange}
             onDragStop={this.onDragStop}
+            measureBeforeMount={true}
             rowHeight={90}
           >
             <div key={'currency-picker'} style={{ zIndex: 2 }}>
@@ -101,13 +97,13 @@ export class AppRaw extends Component<
     );
   }
 
-  private onLayoutChange(layout: Layout[]) {
+  private onLayoutChange = (layout: Layout[]) => {
     const { setTmpLayout } = this.props;
 
     setTmpLayout(layout);
   }
 
-  private onDragStop() {
+  private onDragStop = () => {
     const { syncLayout } = this.props;
 
     setTimeout(syncLayout);

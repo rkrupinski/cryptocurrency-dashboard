@@ -119,9 +119,9 @@
     "@types/node" "*"
     "@types/react" "*"
 
-"@types/react-grid-layout@^0.16.3":
-  version "0.16.3"
-  resolved "https://registry.yarnpkg.com/@types/react-grid-layout/-/react-grid-layout-0.16.3.tgz#4906823ec28df4d8bdde0caa2fce9ed5d0fafa8e"
+"@types/react-grid-layout@^0.16.4":
+  version "0.16.4"
+  resolved "https://registry.yarnpkg.com/@types/react-grid-layout/-/react-grid-layout-0.16.4.tgz#21586d8e049cabd1bee8ba6ae4a289f6d69c72c1"
   dependencies:
     "@types/react" "*"
 
@@ -6785,9 +6785,9 @@ react-dom@^16.3.2:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-"react-draggable@^2.2.6 || ^3.0.3", react-draggable@^3.0.3:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.0.4.tgz#71cff58441e0fa2be9e1cd88f66718a8495210f7"
+react-draggable@3.x, "react-draggable@^2.2.6 || ^3.0.3":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.0.5.tgz#c031e0ed4313531f9409d6cd84c8ebcec0ddfe2d"
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.6.0"
@@ -6801,15 +6801,15 @@ react-event-listener@^0.5.1:
     prop-types "^15.6.0"
     warning "^3.0.0"
 
-react-grid-layout@^0.16.2:
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.16.2.tgz#ef09b0b6db4a9635799663658277ee2d26fa2994"
+react-grid-layout@^0.16.6:
+  version "0.16.6"
+  resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.16.6.tgz#9b2407a2b946c2260ebaf66f13b556e1da4efeb2"
   dependencies:
     classnames "2.x"
     lodash.isequal "^4.0.0"
     prop-types "15.x"
-    react-draggable "^3.0.3"
-    react-resizable "^1.7.5"
+    react-draggable "3.x"
+    react-resizable "1.x"
 
 react-hot-loader@^4.2.0:
   version "4.2.0"
@@ -6878,7 +6878,7 @@ react-redux@^5.0.6:
     loose-envify "^1.1.0"
     prop-types "^15.5.10"
 
-react-resizable@^1.7.5:
+react-resizable@1.x:
   version "1.7.5"
   resolved "https://registry.yarnpkg.com/react-resizable/-/react-resizable-1.7.5.tgz#83eb75bb3684da6989bbbf4f826e1470f0af902e"
   dependencies:
