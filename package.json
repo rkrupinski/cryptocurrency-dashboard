@@ -1,6 +1,6 @@
 {
   "name": "cryptocurrency-dashboard",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "scripts": {
     "start": "webpack-dev-server",
