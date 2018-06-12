@@ -1,4 +1,4 @@
-import React, { Fragment, SFC } from 'react';
+import React, { StrictMode, SFC } from 'react';
 import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
@@ -16,10 +16,10 @@ export const RootRaw: SFC<IRootProps> = ({
 }) => (
   <Provider store={store}>
     <IntlProvider locale={navigator.language}>
-      <Fragment>
+      <StrictMode>
         <CssBaseline />
         <App />
-      </Fragment>
+      </StrictMode>
     </IntlProvider>
   </Provider>
 );

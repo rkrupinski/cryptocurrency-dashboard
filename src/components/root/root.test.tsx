@@ -11,5 +11,5 @@ it('Renders root', function () {
     <Root store={store} />
   );
 
-  expect(wrapper).toMatchSnapshot();
+  expect(wrapper.getElement()).toMatchSnapshot();
 });
