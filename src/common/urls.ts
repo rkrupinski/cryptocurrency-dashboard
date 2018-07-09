@@ -1,9 +1,18 @@
 import { ChartMode } from '@src/redux_/charts';
 
 const API_URL = 'https://min-api.cryptocompare.com/data';
+
 const APP_NAME = 'cryptocurrency_dashboard';
 
-const buildUrl = (tail: string) => API_URL + tail;
+const qs = (params: object) => new URLSearchParams({
+  extraParams: APP_NAME,
+  ...params,
+} as any /* (☞ﾟ∀ﾟ)☞ */);
+
+const url = (base: string) => (tail: string, params: object = {}) =>
+    `${base + tail}?${params}`;
+
+const apiUrl = url(API_URL);
 
 const chartModes: { [key in ChartMode]: [string, number] } = {
   day: ['histohour', 24 - 1],
@@ -11,13 +20,13 @@ const chartModes: { [key in ChartMode]: [string, number] } = {
   month: ['histoday', 30 - 1],
 };
 
-export const currenciesUrl = () => buildUrl(`/all/coinlist?extraParams=${APP_NAME}`);
+export const currenciesUrl = () => apiUrl('/all/coinlist');
 
 export const pricesUrl = (fsyms: string[], tsyms: string[]) =>
-    buildUrl(`/pricemulti?fsyms=${fsyms}&tsyms=${tsyms}&extraParams=${APP_NAME}`);
+    apiUrl('/pricemulti', qs({ fsyms, tsyms }));
 
 export const chartsUrl = (mode: ChartMode, fsym: string, tsym: string) => {
   const [chartMode, limit] = chartModes[mode];
 
-  return buildUrl(`/${chartMode}?fsym=${fsym}&tsym=${tsym}&limit=${limit}&extraParams=${APP_NAME}`);
+  return apiUrl(`/${chartMode}`, qs({ fsym, tsym, limit }));
 };

@@ -19,6 +19,7 @@ export const styles = (theme: Theme) => ({
       outline: `2px dashed ${grey.A100}`,
       outlineOffset: '2px',
     },
+    ['-webkit-touch-callout']: 'none',
     cursor: 'move',
     marginRight: '40px',
     ...ellipsis,
