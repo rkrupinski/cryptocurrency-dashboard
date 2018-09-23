@@ -4,12 +4,12 @@ const API_URL = 'https://min-api.cryptocompare.com/data';
 
 const APP_NAME = 'cryptocurrency_dashboard';
 
-const qs = (params: object) => new URLSearchParams({
+const qs = (params: object = {}) => new URLSearchParams({
   extraParams: APP_NAME,
   ...params,
 } as any /* (☞ﾟ∀ﾟ)☞ */);
 
-const url = (base: string) => (tail: string, params: object = {}) =>
+const url = (base: string) => (tail: string, params: object = qs()) =>
     `${base + tail}?${params}`;
 
 const apiUrl = url(API_URL);
